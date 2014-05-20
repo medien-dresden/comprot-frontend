@@ -13,11 +13,13 @@
     "devDependencies": {
         "grunt": "*",
         "bower": "*",
+        "protractor": "*",
         "http-server": "*",
 
         "grunt-cli": "*",
         "grunt-karma": "*",
         "grunt-html2js": "*",
+        "grunt-protractor-runner": "*",
 
         "grunt-contrib-clean": "*",
         "grunt-contrib-copy": "*",
@@ -35,6 +37,10 @@
 
     "scripts": {
         "install": "bower install",
+        "install": "webdriver-manager update",
+
+        "test": "webdriver-manager start",
+
         "start": "http-server -a localhost -p 8000"
     }
 }

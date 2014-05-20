@@ -10,11 +10,12 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-protractor-runner');
 
     // Default task.
     grunt.registerTask('default', ['jshint','build','karma:unit']);
     grunt.registerTask('build', ['clean','html2js','concat','less:build','copy:assets']);
-    grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy:assets']);
+    grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','protractor:e2e','concat:index', 'less:min','copy:assets']);
     grunt.registerTask('watch', ['karma:watch']);
 
     // Print a timestamp (useful for when watching)
@@ -70,6 +71,14 @@ module.exports = function (grunt) {
         karma: {
             unit: { options: karmaConfig('test/config/karma.conf.js', { singleRun:true, autoWatch: false }) },
             watch: { options: karmaConfig('test/config/karma.conf.js', { singleRun:false, autoWatch: true }) }
+        },
+
+        protractor: {
+            e2e: {
+                options : {
+                    configFile: 'test/config/protractor.conf.js'
+                }
+            }
         },
 
         html2js: {

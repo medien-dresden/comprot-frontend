@@ -1,17 +1,18 @@
 exports.config = {
     allScriptsTimeout: 11000,
 
+    seleniumAddress: 'http://localhost:4444/wd/hub',
+    baseUrl: 'http://localhost:8000/dist/',
+
+    framework: 'jasmine',
+
     specs: [
-        '../../test/integration/**/*.scenario.js'
+        '../../test/e2e/**/*.scenario.js'
     ],
 
     capabilities: {
         'browserName': 'chrome'
     },
-
-    baseUrl: 'http://localhost:8000/dist/',
-
-    framework: 'jasmine',
 
     jasmineNodeOpts: {
         defaultTimeoutInterval: 30000
