@@ -1,0 +1,40 @@
+{
+    "title": "COMPROT Frontend",
+    "name": "comprot-frontend",
+    "description": "COMPROT AngularJS Frontend",
+    "repository": "https://github.com/medien-dresden/comprot-frontend",
+    "version": "1.0.0",
+    "license": "GPLv3",
+    "homepage": "https://github.com/medien-dresden/comprot-frontend",
+    "copyright": "Medien-Dresden.de",
+    "author": "Medien-Dresden.de",
+    "private": true,
+
+    "devDependencies": {
+        "grunt": "*",
+        "bower": "*",
+        "http-server": "*",
+
+        "grunt-cli": "*",
+        "grunt-karma": "*",
+        "grunt-html2js": "*",
+
+        "grunt-contrib-clean": "*",
+        "grunt-contrib-copy": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-concat": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-less": "*",
+
+        "karma-jasmine": "*",
+        "karma-chrome-launcher": "*",
+        "karma-firefox-launcher": "*",
+        "karma-junit-reporter": "*"
+    },
+
+    "scripts": {
+        "install": "bower install",
+        "start": "http-server -a localhost -p 8000"
+    }
+}
