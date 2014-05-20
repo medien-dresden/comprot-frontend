@@ -1,46 +1,39 @@
 {
-    "title": "COMPROT Frontend",
-    "name": "comprot-frontend",
-    "description": "COMPROT AngularJS Frontend",
-    "repository": "https://github.com/medien-dresden/comprot-frontend",
-    "version": "1.0.0",
-    "license": "GPLv3",
-    "homepage": "https://github.com/medien-dresden/comprot-frontend",
-    "copyright": "Medien-Dresden.de",
-    "author": "Medien-Dresden.de",
-    "private": true,
-
-    "devDependencies": {
-        "grunt": "*",
-        "bower": "*",
-        "protractor": "*",
-        "http-server": "*",
-
-        "grunt-cli": "*",
-        "grunt-karma": "*",
-        "grunt-html2js": "*",
-        "grunt-protractor-runner": "*",
-
-        "grunt-contrib-clean": "*",
-        "grunt-contrib-copy": "*",
-        "grunt-contrib-jshint": "*",
-        "grunt-contrib-concat": "*",
-        "grunt-contrib-uglify": "*",
-        "grunt-contrib-watch": "*",
-        "grunt-contrib-less": "*",
-
-        "karma-jasmine": "*",
-        "karma-chrome-launcher": "*",
-        "karma-firefox-launcher": "*",
-        "karma-junit-reporter": "*"
-    },
-
-    "scripts": {
-        "install": "bower install",
-        "install": "webdriver-manager update",
-
-        "test": "webdriver-manager start",
-
-        "start": "http-server -a localhost -p 8000"
-    }
+  "title": "COMPROT Frontend",
+  "name": "comprot-frontend",
+  "description": "COMPROT AngularJS Frontend",
+  "repository": "https://github.com/medien-dresden/comprot-frontend",
+  "version": "1.0.0",
+  "license": "GPLv3",
+  "homepage": "https://github.com/medien-dresden/comprot-frontend",
+  "copyright": "Medien-Dresden.de",
+  "author": "Medien-Dresden.de",
+  "private": true,
+  "devDependencies": {
+    "grunt-cli": "~0.1.13",
+    "karma-chrome-launcher": "~0.1.3",
+    "karma-firefox-launcher": "~0.1.3",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-protractor-runner": "~0.2.4",
+    "karma-jasmine": "~0.1.5",
+    "karma-junit-reporter": "~0.2.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "http-server": "~0.6.1",
+    "grunt-karma": "~0.8.3",
+    "grunt-html2js": "~0.2.6",
+    "grunt-contrib-jshint": "~0.10.0",
+    "bower": "~1.3.3",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt": "~0.4.5",
+    "protractor": "~0.22.0",
+    "karma": "~0.12.16",
+    "grunt-contrib-less": "~0.11.0"
+  },
+  "scripts": {
+    "install": "webdriver-manager update",
+    "test": "webdriver-manager start",
+    "start": "http-server -a localhost -p 8000"
+  }
 }
