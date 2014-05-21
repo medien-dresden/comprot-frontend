@@ -16,7 +16,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['jshint','build','karma:unit']);
     grunt.registerTask('build', ['clean','html2js','concat','less:build','copy:assets']);
     grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','protractor:e2e','concat:index', 'less:min','copy:assets']);
-    grunt.registerTask('watch', ['karma:watch']);
 
     // Print a timestamp (useful for when watching)
     grunt.registerTask('timestamp', function() {
@@ -115,23 +114,37 @@ module.exports = function (grunt) {
                     'bower_components/angular/angular.js',
                     'bower_components/angular-route/angular-route.js',
                     'bower_components/angular-resource/angular-resource.js',
-                    'bower_components/angular-bootstrap/ui-bootstrap.js'
+                    'bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
                 ],
 
                 dest: '<%= distdir %>/static/angular.js'
+            },
+
+            thirdparty: {
+                src: [
+                    'bower_components/lodash/dist/lodash.js',
+                    'bower_components/restangular/dist/restangular.js'
+                ],
+
+                dest: '<%= distdir %>/static/thirdparty.js'
             }
         },
 
         uglify: {
             dist:{
                 options: { banner: "<%= banner %>" },
-                src:['<%= src.js %>' ,'<%= src.jsTpl %>'],
-                dest:'<%= distdir %>/static/application.js'
+                src: ['<%= src.js %>' ,'<%= src.jsTpl %>'],
+                dest: '<%= distdir %>/static/application.js'
             },
 
             angular: {
-                src:['<%= concat.angular.src %>'],
+                src: ['<%= concat.angular.src %>'],
                 dest: '<%= distdir %>/static/angular.js'
+            },
+
+            thirdparty: {
+                src: ['<%= concat.thirdParty.src %>'],
+                dest: '<%= distdir %>/static/thirdparty.js'
             }
         },
 

@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 	<head>
+		<title>COMPROT Workbench</title>
+
 		<script type="text/javascript" src="static/angular.js"></script>
+		<script type="text/javascript" src="static/thirdparty.js"></script>
 		<script type="text/javascript" src="static/application.js"></script>
+
 		<link rel="stylesheet" type="text/css" href="static/application.css"/>
 	</head>
 	<body ng-controller="AppCtrl">
-		<div ng-view class="container"></div>
+        <div class="container">
+            <div class="row clearfix header">
+				<div class="col-md-12 column">
+				    <div class="row clearfix">
+				        <div class="col-md-8 column">
+				            <img src="img/logo.png" />
+				        </div>
+				        <div class="col-md-4 column h1">
+				            <input type="text" class="form-control" ng-model="suggestionQuery"
+				                   placeholder="Search for proteins and targets..."
+				                   typeahead="item.label for item in getSearchSuggestions(suggestionQuery)"
+				                   typeahead-template-url="suggestions.tpl.html"
+				                   typeahead-min-length="3"
+				                   typeahead-wait-ms="300">
+				        </div>
+				    </div>
+				</div>
+            </div>
+            <div class="row clearfix">
+				<div class="col-md-12 column">
+				    <div class="tabbable">
+				        <ul class="nav nav-tabs">
+				            <li ng-class="{active:isCurrentlyActive('dashboard')}">
+				                <a href="#/dashboard" data-toggle="tab">Dashboard</a>
+				            </li>
+				            <li ng-class="{active:isCurrentlyActive('drugs')}">
+				                <a href="#/drugs" data-toggle="tab">Drugs</a>
+				            </li>
+				            <li ng-class="{active:isCurrentlyActive('proteins')}">
+				                <a href="#/proteins" data-toggle="tab">Proteins</a>
+				            </li>
+				            <li ng-class="{active:isCurrentlyActive('diseases')}">
+				                <a href="#/diseases" data-toggle="tab">Diseases</a>
+				            </li>
+				            <li ng-class="{active:isCurrentlyActive('network')}">
+				                <a href="#/network" data-toggle="tab">Network</a>
+				            </li>
+				        </ul>
+				        <div class="tab-content col-md-12 column">
+				            <div class="row clearfix" ng-view></div>
+				        </div>
+				    </div>
+				</div>
+            </div>
+            <div class="row clearfix footer">
+				<div class="col-md-12 column">
+				    <div class="row clearfix">
+				        <div class="col-md-4 column">
+				        </div>
+				        <div class="col-md-4 column">
+				        </div>
+				        <div class="col-md-4 column">
+				        </div>
+				    </div>
+				</div>
+            </div>
+        </div>
 	</body>
 </html>

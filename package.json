@@ -27,12 +27,15 @@
     "bower": "~1.3.3",
     "grunt-contrib-watch": "~0.6.1",
     "grunt": "~0.4.5",
-    "protractor": "~0.22.0",
+    
+    "protractor": "git+https://github.com/cesarandreu/protractor.git#4e7adcef54006fcd5849e19139efd48dcaf2e4a8",
+
     "karma": "~0.12.16",
     "grunt-contrib-less": "~0.11.0"
   },
   "scripts": {
-    "install": "bower install",
+    "install": "bower install && webdriver-manager update",
+    "test": "webdriver-manager start",
     "start": "http-server -a localhost -p 8000"
   }
 }

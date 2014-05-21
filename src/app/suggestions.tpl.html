@@ -1,0 +1,10 @@
+<a class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+        </div>
+        <div class="col-md-4 column text-right">
+            <span class="text-muted">{{match.model.hits}}</span>
+        </div>
+    </div>
+</a>
