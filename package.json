@@ -32,8 +32,7 @@
     "grunt-contrib-less": "~0.11.0"
   },
   "scripts": {
-    "install": "webdriver-manager update",
-    "test": "webdriver-manager start",
+    "install": "bower install",
     "start": "http-server -a localhost -p 8000"
   }
 }
