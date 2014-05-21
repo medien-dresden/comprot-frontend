@@ -10,62 +10,45 @@
 		<link rel="stylesheet" type="text/css" href="static/application.css"/>
 	</head>
 	<body ng-controller="AppCtrl">
-        <div class="container">
-            <div class="row clearfix header">
-				<div class="col-md-12 column">
-				    <div class="row clearfix">
-				        <div class="col-md-8 column">
-				            <img src="img/logo.png" />
-				        </div>
-				        <div class="col-md-4 column h1">
-				            <input type="text" class="form-control" ng-model="suggestionQuery"
-				                   placeholder="Search for proteins and targets..."
-				                   typeahead="item.label for item in getSearchSuggestions(suggestionQuery)"
-				                   typeahead-template-url="suggestions.tpl.html"
-				                   typeahead-min-length="3"
-				                   typeahead-wait-ms="300">
-				        </div>
-				    </div>
+		<div class="navbar navbar-default navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/dashboard">COMPROT</a>
 				</div>
-            </div>
-            <div class="row clearfix">
-				<div class="col-md-12 column">
-				    <div class="tabbable">
-				        <ul class="nav nav-tabs">
-				            <li ng-class="{active:isCurrentlyActive('dashboard')}">
-				                <a href="#/dashboard" data-toggle="tab">Dashboard</a>
-				            </li>
-				            <li ng-class="{active:isCurrentlyActive('drugs')}">
-				                <a href="#/drugs" data-toggle="tab">Drugs</a>
-				            </li>
-				            <li ng-class="{active:isCurrentlyActive('proteins')}">
-				                <a href="#/proteins" data-toggle="tab">Proteins</a>
-				            </li>
-				            <li ng-class="{active:isCurrentlyActive('diseases')}">
-				                <a href="#/diseases" data-toggle="tab">Diseases</a>
-				            </li>
-				            <li ng-class="{active:isCurrentlyActive('network')}">
-				                <a href="#/network" data-toggle="tab">Network</a>
-				            </li>
-				        </ul>
-				        <div class="tab-content col-md-12 column">
-				            <div class="row clearfix" ng-view></div>
-				        </div>
-				    </div>
+				<div class="navbar-collapse collapse navbar-responsive-collapse">
+					<ul class="nav navbar-nav">
+						<li ng-class="{active:isCurrentlyActive('drugs')}">
+							<a href="#/drugs" data-toggle="tab">Drugs</a>
+						</li>
+						<li ng-class="{active:isCurrentlyActive('proteins')}">
+							<a href="#/proteins" data-toggle="tab">Proteins</a>
+						</li>
+						<li ng-class="{active:isCurrentlyActive('diseases')}">
+							<a href="#/diseases" data-toggle="tab">Diseases</a>
+						</li>
+						<li ng-class="{active:isCurrentlyActive('network')}">
+							<a href="#/network" data-toggle="tab">Network</a>
+						</li>
+					</ul>
+					<form class="navbar-form navbar-right">
+						<input type="text" class="form-control col-lg-8" ng-model="suggestionQuery"
+							placeholder="Search..."
+							typeahead="item.label for item in getSearchSuggestions(suggestionQuery)"
+							typeahead-template-url="suggestions.tpl.html"
+							typeahead-append-to-body="true"
+							typeahead-min-length="3"
+							typeahead-wait-ms="300">
+					</form>
 				</div>
-            </div>
-            <div class="row clearfix footer">
-				<div class="col-md-12 column">
-				    <div class="row clearfix">
-				        <div class="col-md-4 column">
-				        </div>
-				        <div class="col-md-4 column">
-				        </div>
-				        <div class="col-md-4 column">
-				        </div>
-				    </div>
-				</div>
-            </div>
-        </div>
+			</div>
+		</div>
+		<div class="container">
+			<div ng-view></div>
+		</div>
 	</body>
 </html>

@@ -10,7 +10,8 @@ var app = angular.module('app', [
 	'services.breadcrumbs',
 	'services.suggestions',
 
-    'dashboard'
+    'dashboard',
+    'drugs'
 ]);
 
 app.config(['$routeProvider', '$locationProvider', 'RestangularProvider',
@@ -21,6 +22,8 @@ app.config(['$routeProvider', '$locationProvider', 'RestangularProvider',
 
 app.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'SuggestionsService',
 		function($scope, $location, breadcrumbs, SuggestionsService) {
+
+    $scope.breadcrumbs = breadcrumbs;
 
 	$scope.isCurrentlyActive = function (path) {
 		return path === breadcrumbs.getFirst().name;
