@@ -10,10 +10,22 @@
 You need to install Node.js and then the development tools. Node.js comes with a package manager called [npm](http://npmjs.org) for installing NodeJS applications and libraries.
 * [Install node.js](http://nodejs.org/download/) (requires node.js version >= 0.8.4)
 * Install Grunt-CLI as global npm modules:
-
     ```
     npm install -g grunt-cli
     ```
+* Install development dependencies
+    ```
+    npm install
+    ```
+* Build frontend
+    ```
+    grunt
+    ```
+* Go to http://localhost:8000/dist
+
+### Development
+
+Sorry, coming soon...
 
 ## License
 

@@ -34,7 +34,7 @@ app.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTra
         return SuggestionsService.getList({query: input}).then(function(list) {
         	return list;
         });
-    }
+    };
 
     $scope.hasPendingRequests = function () {
         return httpRequestTracker.hasPendingRequests();
