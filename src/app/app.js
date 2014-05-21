@@ -34,4 +34,5 @@ app.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'SuggestionsSer
         	return list;
         });
     }
+    
 }]);
