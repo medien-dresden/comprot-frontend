@@ -8,6 +8,7 @@ var app = angular.module('app', [
 	'templates.common',
 
 	'services.breadcrumbs',
+    'services.httpRequestTracker',
 	'services.suggestions',
 
     'dashboard',
@@ -20,8 +21,8 @@ app.config(['$routeProvider', '$locationProvider', 'RestangularProvider',
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
 }]);
 
-app.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'SuggestionsService',
-		function($scope, $location, breadcrumbs, SuggestionsService) {
+app.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'SuggestionsService',
+		function($scope, $location, breadcrumbs, httpRequestTracker, SuggestionsService) {
 
     $scope.breadcrumbs = breadcrumbs;
 
@@ -34,5 +35,9 @@ app.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'SuggestionsSer
         	return list;
         });
     }
+
+    $scope.hasPendingRequests = function () {
+        return httpRequestTracker.hasPendingRequests();
+    };
     
 }]);

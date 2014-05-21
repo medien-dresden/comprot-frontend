@@ -34,6 +34,9 @@
 						<li ng-class="{active:isCurrentlyActive('network')}">
 							<a href="#/network" data-toggle="tab">Network</a>
 						</li>
+						<li>
+							<a><img src="img/spinner.gif" ng-show="hasPendingRequests()"></a>
+						</li>
 					</ul>
 					<form class="navbar-form navbar-right">
 						<input type="text" class="form-control col-lg-8" ng-model="suggestionQuery"
