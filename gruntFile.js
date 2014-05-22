@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     // Default task.
     grunt.registerTask('default', ['jshint','build','karma:unit']);
     grunt.registerTask('build', ['clean','html2js','concat','less:build','copy:assets']);
-    grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','protractor:e2e','concat:index', 'less:min','copy:assets']);
+    grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy:assets','protractor']);
 
     // Print a timestamp (useful for when watching)
     grunt.registerTask('timestamp', function() {
@@ -24,7 +24,13 @@ module.exports = function (grunt) {
 
     var karmaConfig = function(configFile, customOptions) {
         var options = { configFile: configFile, keepalive: true };
-        var travisOptions = process.env.TRAVIS && { browsers: ['Firefox'], reporters: 'dots' };
+        var travisOptions = process.env.TRAVIS && { browsers: ['Firefox'] };
+        return grunt.util._.extend(options, customOptions, travisOptions);
+    };
+
+    var protractorConfig = function(configFile, customOptions) {
+        var options = { configFile: configFile };
+        var travisOptions = process.env.TRAVIS && {};
         return grunt.util._.extend(options, customOptions, travisOptions);
     };
 
@@ -73,11 +79,7 @@ module.exports = function (grunt) {
         },
 
         protractor: {
-            e2e: {
-                options : {
-                    configFile: 'test/config/protractor.conf.js'
-                }
-            }
+            e2e: { options : protractorConfig('test/config/protractor.conf.js') }
         },
 
         html2js: {

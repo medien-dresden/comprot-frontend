@@ -1,6 +1,6 @@
 dist
 bower_components
 node_modules
+reports
 *.log
-*.report.xml
 !.gitkeep
