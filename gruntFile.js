@@ -75,7 +75,7 @@ module.exports = function (grunt) {
 
         karma: {
             unit: { options: karmaConfig('test/config/karma.conf.js', { singleRun:true, autoWatch: false }) },
-            watch: { options: karmaConfig('test/config/karma.conf.js', { singleRun:false, autoWatch: true, keepalive: true }) }
+            watch: { options: karmaConfig('test/config/karma.conf.js', { singleRun:false, autoWatch: true }) }
         },
 
         protractor: {

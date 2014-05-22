@@ -1,7 +1,7 @@
 describe('dashboard', function() {
 
 	it('should test something', function() {
-		expect(true).toBeTruthy();
+		expect(false).toBeTruthy();
 	});
 
 });
