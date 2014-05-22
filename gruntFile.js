@@ -143,7 +143,7 @@ module.exports = function (grunt) {
             },
 
             thirdparty: {
-                src: ['<%= concat.thirdParty.src %>'],
+                src: ['<%= concat.thirdparty.src %>'],
                 dest: '<%= distdir %>/static/thirdparty.js'
             }
         },
