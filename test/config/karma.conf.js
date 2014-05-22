@@ -36,10 +36,15 @@ module.exports = function(config) {
         },
 
         coverageReporter: {
+            type: 'lcov',
+            dir: 'reports/coverage'
+        }        
+
+        /*coverageReporter: {
             reporters: [
                 { type: 'html', dir:'reports/coverage-html' },
                 { type: 'cobertura', dir:'reports/coverage-cobertura' }
             ]
-        }
+        }*/
     })
 };

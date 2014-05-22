@@ -1,6 +1,7 @@
 # COMPROT AngularJS Frontend
 
 [![Build Status](https://travis-ci.org/medien-dresden/comprot-frontend.svg?branch=develop)](https://travis-ci.org/medien-dresden/comprot-frontend)
+[![Coverage Status](https://coveralls.io/repos/medien-dresden/comprot-frontend/badge.png?branch=develop)](https://coveralls.io/r/medien-dresden/comprot-frontend?branch=develop)
 [![Stories in Ready](https://badge.waffle.io/medien-dresden/comprot-frontend.png?label=ready&title=Ready)](http://waffle.io/medien-dresden/comprot-frontend)
 
 ## Installation

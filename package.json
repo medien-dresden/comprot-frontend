@@ -30,7 +30,8 @@
     "protractor": "git+https://github.com/cesarandreu/protractor.git#4e7adcef54006fcd5849e19139efd48dcaf2e4a8",
     "karma": "~0.12.16",
     "grunt-contrib-less": "~0.11.0",
-    "karma-coverage": "~0.2.2"
+    "karma-coverage": "~0.2.2",
+    "grunt-karma-coveralls": "~2.5.1"
   },
   "scripts": {
     "install": "bower install && webdriver-manager update",

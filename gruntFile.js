@@ -11,11 +11,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-protractor-runner');
+    grunt.loadNpmTasks('grunt-karma-coveralls');
 
     // Default task.
     grunt.registerTask('default', ['jshint','build','karma:unit']);
     grunt.registerTask('build', ['clean','html2js','concat','less:build','copy:assets']);
-    grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy:assets','protractor']);
+    grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy:assets','protractor','coveralls']);
 
     // Print a timestamp (useful for when watching)
     grunt.registerTask('timestamp', function() {
@@ -80,6 +81,14 @@ module.exports = function (grunt) {
 
         protractor: {
             e2e: { options : protractorConfig('test/config/protractor.conf.js') }
+        },
+
+        coveralls: {
+            options: {
+                coverage_dir: 'reports/coverage',
+                recursive: true,
+                force: true
+            }
         },
 
         html2js: {
