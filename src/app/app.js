@@ -24,8 +24,6 @@ app.config(['$routeProvider', '$locationProvider', 'RestangularProvider',
 app.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'SuggestionsService',
 		function($scope, $location, breadcrumbs, httpRequestTracker, SuggestionsService) {
 
-    $scope.breadcrumbs = breadcrumbs;
-
 	$scope.isCurrentlyActive = function (path) {
 		return path === breadcrumbs.getFirst().name;
 	};

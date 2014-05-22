@@ -10,6 +10,9 @@ module.exports = function(config) {
             'bower_components/angular-resource/angular-resource.js',
             'bower_components/angular-bootstrap/ui-bootstrap.js',
 
+            'bower_components/lodash/dist/lodash.js',
+            'bower_components/restangular/dist/restangular.js',
+
             'src/**/*.js',
             'test/unit/**/*.spec.js',
             'dist/templates/**/*.js'
@@ -38,13 +41,6 @@ module.exports = function(config) {
         coverageReporter: {
             type: 'lcov',
             dir: 'reports/coverage'
-        }        
-
-        /*coverageReporter: {
-            reporters: [
-                { type: 'html', dir:'reports/coverage-html' },
-                { type: 'cobertura', dir:'reports/coverage-cobertura' }
-            ]
-        }*/
+        }
     })
 };
