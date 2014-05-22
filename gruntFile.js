@@ -24,12 +24,12 @@ module.exports = function (grunt) {
 
     var karmaConfig = function(configFile, customOptions) {
         var options = { configFile: configFile, keepalive: true };
-        var travisOptions = process.env.TRAVIS && { browsers: ['Firefox'] };
+        var travisOptions = process.env.TRAVIS && {};
         return grunt.util._.extend(options, customOptions, travisOptions);
     };
 
     var protractorConfig = function(configFile, customOptions) {
-        var options = { configFile: configFile };
+        var options = { configFile: configFile, keepAlive: false };
         var travisOptions = process.env.TRAVIS && {};
         return grunt.util._.extend(options, customOptions, travisOptions);
     };
@@ -75,7 +75,7 @@ module.exports = function (grunt) {
 
         karma: {
             unit: { options: karmaConfig('test/config/karma.conf.js', { singleRun:true, autoWatch: false }) },
-            watch: { options: karmaConfig('test/config/karma.conf.js', { singleRun:false, autoWatch: true }) }
+            watch: { options: karmaConfig('test/config/karma.conf.js', { singleRun:false, autoWatch: true, keepalive: true }) }
         },
 
         protractor: {

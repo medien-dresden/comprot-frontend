@@ -5,7 +5,7 @@ exports.config = {
     baseUrl: 'http://localhost:8000/dist/',
 
     framework: 'jasmine',
-
+    
     specs: [
         '../../test/e2e/**/*.scenario.js'
     ],
