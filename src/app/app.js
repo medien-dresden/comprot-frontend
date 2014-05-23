@@ -1,4 +1,4 @@
-var app = angular.module('app', [
+angular.module('app', [
     'ngRoute',
     'ngResource',
     'ui.bootstrap',
@@ -11,28 +11,23 @@ var app = angular.module('app', [
     'services.httpRequestTracker',
 	'services.suggestions',
 
-    'dashboard',
-    'drugs'
-]);
+    'app.search',
+    'app.dashboard',
+    'app.drugs'
+])
 
-app.config(['$routeProvider', '$locationProvider', 'RestangularProvider',
+.config(['$routeProvider', '$locationProvider', 'RestangularProvider',
 		function ($routeProvider, $locationProvider, RestangularProvider) {
 	RestangularProvider.setBaseUrl('http://localhost:8080/');
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
-}]);
+}])
 
-app.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'SuggestionsService',
-		function($scope, $location, breadcrumbs, httpRequestTracker, SuggestionsService) {
+.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker',
+		function($scope, $location, breadcrumbs, httpRequestTracker) {
 
-	$scope.isCurrentlyActive = function (path) {
+	$scope.isActiveView = function (path) {
 		return path === breadcrumbs.getFirst().name;
 	};
-
-    $scope.getSearchSuggestions = function(input) {
-        return SuggestionsService.getList({query: input}).then(function(list) {
-        	return list;
-        });
-    };
 
     $scope.hasPendingRequests = function () {
         return httpRequestTracker.hasPendingRequests();

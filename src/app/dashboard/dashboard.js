@@ -1,12 +1,12 @@
-var dashboard = angular.module('dashboard', []);
+angular.module('app.dashboard', [])
 
-dashboard.config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/dashboard', {
         templateUrl: 'dashboard/dashboard.tpl.html',
         controller: 'DashboardCtrl',
     });
-}]);
+}])
 
-dashboard.controller('DashboardCtrl', ['$scope', function ($scope) {
+.controller('DashboardCtrl', ['$scope', function ($scope) {
 	
 }]);

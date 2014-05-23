@@ -1,0 +1,17 @@
+<script type="text/ng-template" id="search/box/suggestions.tpl.html">
+	<a class="container-fluid">
+	    <div class="row clearfix">
+	        <div class="col-md-8 column" bind-html-unsafe="match.label | typeaheadHighlight:query"></div>
+	        <div class="col-md-4 column text-right">({{match.model.hits}})</div>
+	    </div>
+	</a>
+</script>
+<div ng-controller="SearchBoxCtrl">
+	<input type="text" class="form-control col-lg-8" ng-model="searchQuery"
+		placeholder="Search..."
+		typeahead="item.label for item in getSuggestions(searchQuery)"
+		typeahead-template-url="search/box/suggestions.tpl.html"
+		typeahead-append-to-body="true"
+		typeahead-min-length="3"
+		typeahead-wait-ms="300">
+</div>

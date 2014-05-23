@@ -1,6 +1,6 @@
-var httpRequestTracker = angular.module('services.httpRequestTracker', []);
+angular.module('services.httpRequestTracker', [])
 
-httpRequestTracker.factory('httpRequestTracker', ['$http', function($http) {
+.factory('httpRequestTracker', ['$http', function($http) {
 
 	var httpRequestTracker = {};
 

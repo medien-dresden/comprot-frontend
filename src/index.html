@@ -22,16 +22,16 @@
 				</div>
 				<div class="navbar-collapse collapse navbar-responsive-collapse">
 					<ul class="nav navbar-nav">
-						<li ng-class="{active:isCurrentlyActive('drugs')}">
+						<li ng-class="{active:isActiveView('drugs')}">
 							<a href="#/drugs" data-toggle="tab">Drugs</a>
 						</li>
-						<li ng-class="{active:isCurrentlyActive('proteins')}">
+						<li ng-class="{active:isActiveView('proteins')}">
 							<a href="#/proteins" data-toggle="tab">Proteins</a>
 						</li>
-						<li ng-class="{active:isCurrentlyActive('diseases')}">
+						<li ng-class="{active:isActiveView('diseases')}">
 							<a href="#/diseases" data-toggle="tab">Diseases</a>
 						</li>
-						<li ng-class="{active:isCurrentlyActive('network')}">
+						<li ng-class="{active:isActiveView('network')}">
 							<a href="#/network" data-toggle="tab">Network</a>
 						</li>
 						<li>
@@ -39,13 +39,7 @@
 						</li>
 					</ul>
 					<form class="navbar-form navbar-right">
-						<input type="text" class="form-control col-lg-8" ng-model="suggestionQuery"
-							placeholder="Search..."
-							typeahead="item.label for item in getSearchSuggestions(suggestionQuery)"
-							typeahead-template-url="suggestions.tpl.html"
-							typeahead-append-to-body="true"
-							typeahead-min-length="3"
-							typeahead-wait-ms="300">
+						<div ng-include="'search/box/input.tpl.html'"></div>
 					</form>
 				</div>
 			</div>
