@@ -17,15 +17,20 @@ You need to install Node.js and then the development tools. Node.js comes with a
     ```
     npm install -g grunt-cli
     ```
-* Install development dependencies
+* Install dependencies
 
     ```
     npm install
     ```
-* Build frontend
+* Build application
 
     ```
     grunt
+    ```
+* Start server
+
+    ```
+    npm start
     ```
 * Go to http://localhost:8000/dist
 
