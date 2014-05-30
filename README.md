@@ -22,12 +22,7 @@ You need to install Node.js and then the development tools. Node.js comes with a
     ```
     npm install
     ```
-* Build application
-
-    ```
-    grunt
-    ```
-* Start server
+* Start application
 
     ```
     npm start
@@ -36,7 +31,19 @@ You need to install Node.js and then the development tools. Node.js comes with a
 
 ### Development
 
-Sorry, coming soon...
+Grunt development tasks:
+* ```protractor``` run integration tests (E2E scenarios)
+* ```karma:unit``` run the unit tests once (specifications)
+* ```karma:watch``` monitor sources and run unit tests on every file change
+* ```watch:build``` monitor sources and build the app on every file change
+* ```release``` build the application, run unit and integration tests
+
+While development, you then may have three terminals:
+* ```npm start```
+* ```grunt karma:watch```
+* ```grunt watch:build```
+
+The only none optimal thing is that a change triggers a unit test run and a build that triggers a change that also triggers a test run due to a change. 
 
 ## License
 
