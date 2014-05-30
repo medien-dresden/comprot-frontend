@@ -6,12 +6,17 @@
 	    </div>
 	</a>
 </script>
-<div ng-controller="SearchBoxCtrl">
-	<input type="text" class="form-control col-lg-8" ng-model="searchQuery"
-		placeholder="Search..."
-		typeahead="item.label for item in getSuggestions(searchQuery)"
-		typeahead-template-url="search/box/suggestions.tpl.html"
-		typeahead-append-to-body="true"
-		typeahead-min-length="3"
-		typeahead-wait-ms="300">
+<div ng-controller="SearchBoxCtrl" class="form-group search-box">
+	<div class="input-group input-group-sm">
+		<input type="text" class="form-control" ng-model="searchQuery"
+			placeholder="Search..."
+			typeahead="item.label for item in getSuggestions(searchQuery)"
+			typeahead-template-url="search/box/suggestions.tpl.html"
+			typeahead-append-to-body="true"
+			typeahead-min-length="3"
+			typeahead-wait-ms="300">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+		</span>
+	</div>
 </div>

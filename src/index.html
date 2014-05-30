@@ -3,6 +3,8 @@
 	<head>
 		<title>COMPROT Workbench</title>
 
+		<link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon" />
+
 		<script type="text/javascript" src="static/angular.js"></script>
 		<script type="text/javascript" src="static/thirdparty.js"></script>
 		<script type="text/javascript" src="static/application.js"></script>
@@ -10,37 +12,41 @@
 		<link rel="stylesheet" type="text/css" href="static/application.css"/>
 	</head>
 	<body ng-controller="AppCtrl">
-		<div class="navbar navbar-default navbar-static-top">
+		<div class="navbar navbar-inverse navbar-static-top" ng-init="hasCollapsedNavigation = true">
 			<div class="container">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle">
+					<button type="button" class="navbar-toggle" ng-click="hasCollapsedNavigation = !hasCollapsedNavigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#/dashboard">COMPROT</a>
 				</div>
-				<div class="navbar-collapse collapse navbar-responsive-collapse">
-					<ul class="nav navbar-nav">
-						<li ng-class="{active:isActiveView('drugs')}">
-							<a href="#/drugs" data-toggle="tab">Drugs</a>
-						</li>
-						<li ng-class="{active:isActiveView('proteins')}">
-							<a href="#/proteins" data-toggle="tab">Proteins</a>
-						</li>
-						<li ng-class="{active:isActiveView('diseases')}">
-							<a href="#/diseases" data-toggle="tab">Diseases</a>
-						</li>
-						<li ng-class="{active:isActiveView('network')}">
-							<a href="#/network" data-toggle="tab">Network</a>
-						</li>
-						<li>
-							<a><img src="img/spinner.gif" ng-show="hasPendingRequests()"></a>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-right">
+				<div class="navbar-collapse collapse navbar-responsive-collapse" collapse="hasCollapsedNavigation">
+					<form class="navbar-form navbar-left">
 						<div ng-include="'search/box/box.tpl.html'"></div>
 					</form>
+					<ul class="nav navbar-nav">
+						<li ng-class="{active:isActiveView('drugs')}">
+							<a href="#/drugs" data-toggle="tab">Drugs&nbsp;&nbsp;<span class="badge">42</span></a>
+						</li>
+						<li ng-class="{active:isActiveView('proteins')}">
+							<a href="#/proteins" data-toggle="tab">Proteins&nbsp;&nbsp;<span class="badge">12</span></a>
+						</li>
+						<li ng-class="{active:isActiveView('diseases')}">
+							<a href="#/diseases" data-toggle="tab">Diseases&nbsp;&nbsp;<span class="badge">32</span></a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Network graph</a></li>
+								<!-- li class="divider"></li -->
+							</ul>
+						</li>
+						<li class="loading-indicator" ng-show="hasPendingRequests()">
+							<a><img src="static/img/spinner.gif"></a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

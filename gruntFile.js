@@ -15,9 +15,9 @@ module.exports = function (grunt) {
 
     // Default task.
     grunt.registerTask('default', ['jshint','build','karma:unit']);
-    grunt.registerTask('build', ['clean','html2js','concat','less:build','copy:assets']);
-    grunt.registerTask('iterative-build', ['html2js','concat','less:build','copy:assets']);
-    grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy:assets','protractor']);
+    grunt.registerTask('iterative-build', ['html2js','concat','less:build','copy']);
+    grunt.registerTask('build', ['clean','iterative-build']);
+    grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy','protractor']);
 
     // Print a timestamp (useful for when watching)
     grunt.registerTask('timestamp', function() {
@@ -70,7 +70,25 @@ module.exports = function (grunt) {
                     src : '**',
                     expand: true,
                     cwd: 'src/assets/',
-                    dest: '<%= distdir %>'
+                    dest: '<%= distdir %>/static'
+                }]
+            },
+
+            bootstrapFonts: {
+                files: [{
+                    src : '**',
+                    expand: true,
+                    cwd: 'bower_components/bootstrap/fonts/',
+                    dest: '<%= distdir %>/static/fonts'
+                }]
+            },
+
+            ubuntuFonts: {
+                files: [{
+                    src : '**',
+                    expand: true,
+                    cwd: 'bower_components/ubuntu-fontface/fonts/',
+                    dest: '<%= distdir %>/static/fonts'
                 }]
             }
         },
