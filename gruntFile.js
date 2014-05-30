@@ -16,6 +16,7 @@ module.exports = function (grunt) {
     // Default task.
     grunt.registerTask('default', ['jshint','build','karma:unit']);
     grunt.registerTask('build', ['clean','html2js','concat','less:build','copy:assets']);
+    grunt.registerTask('iterative-build', ['html2js','concat','less:build','copy:assets']);
     grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy:assets','protractor']);
 
     // Print a timestamp (useful for when watching)
@@ -183,7 +184,7 @@ module.exports = function (grunt) {
 
             build: {
                 files:['<%= src.js %>', '<%= src.specs %>', '<%= src.lessWatch %>', '<%= src.tpl.app %>', '<%= src.tpl.common %>', '<%= src.html %>'],
-                tasks:['build','timestamp']
+                tasks:['iterative-build','timestamp']
             }
         },
 
