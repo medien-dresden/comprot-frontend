@@ -8,10 +8,11 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - npm start &
-  - npm test &
   - sleep 3 # give server some time to start
 
-script: grunt release
+script:
+  - grunt release
+  - grunt coveralls
 
 cache:
   directories:

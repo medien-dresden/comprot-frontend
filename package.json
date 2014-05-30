@@ -35,7 +35,6 @@
   },
   "scripts": {
     "install": "bower install && webdriver-manager update",
-    "test": "webdriver-manager start",
-    "start": "http-server -a localhost -p 8000"
+    "start": "http-server -a localhost -p 8000 & webdriver-manager start"
   }
 }
