@@ -35,6 +35,7 @@
   },
   "scripts": {
     "install": "bower install && webdriver-manager update",
-    "start": "http-server -a localhost -p 8000 & webdriver-manager start"
+    "start": "http-server -a localhost -p 8000 & webdriver-manager start",
+    "prestart": "grunt build"
   }
 }
