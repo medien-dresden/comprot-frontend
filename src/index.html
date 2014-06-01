@@ -12,8 +12,9 @@
 		<link rel="stylesheet" type="text/css" href="static/application.css"/>
 	</head>
 	<body ng-controller="AppCtrl">
+		<toaster-container toaster-options="{'position-class': 'toast-bottom-right'}"></toaster-container>
 		<div class="navbar navbar-inverse navbar-static-top" ng-init="hasCollapsedNavigation = true">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" ng-click="hasCollapsedNavigation = !hasCollapsedNavigation">
 						<span class="icon-bar"></span>
@@ -28,29 +29,31 @@
 					</form>
 					<ul class="nav navbar-nav">
 						<li ng-class="{active:isActiveView('drugs')}">
-							<a href="#/drugs" data-toggle="tab">Drugs&nbsp;&nbsp;<span class="badge">42</span></a>
+							<a href="#/drugs" data-toggle="tab">Drugs&nbsp;&nbsp;<span class="badge">{{model.drugs}}</span></a>
 						</li>
 						<li ng-class="{active:isActiveView('proteins')}">
-							<a href="#/proteins" data-toggle="tab">Proteins&nbsp;&nbsp;<span class="badge">12</span></a>
+							<a href="#/proteins" data-toggle="tab">Proteins&nbsp;&nbsp;<span class="badge">{{model.proteins}}</span></a>
 						</li>
 						<li ng-class="{active:isActiveView('diseases')}">
-							<a href="#/diseases" data-toggle="tab">Diseases&nbsp;&nbsp;<span class="badge">32</span></a>
+							<a href="#/diseases" data-toggle="tab">Diseases&nbsp;&nbsp;<span class="badge">{{model.diseases}}</span></a>
 						</li>
+						<li class="divider-vertical"></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Network graph</a></li>
-								<!-- li class="divider"></li -->
 							</ul>
 						</li>
-						<li class="loading-indicator" ng-show="hasPendingRequests()">
-							<a><img src="static/img/spinner.gif"></a>
+					</ul>
+					<ul class="nav navbar-right">
+						<li ng-show="hasPendingRequests()">
+							<p class="navbar-text"><img src="static/img/spinner.gif"></p>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container-fluid view">
 			<div ng-view></div>
 		</div>
 	</body>
