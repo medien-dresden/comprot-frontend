@@ -34,12 +34,11 @@
 
 // Navs =======================================================================
 
-// Indicators =================================================================
-
-.loading-indicator {
-    right: 0px;
-    position: absolute !important;
+.navbar-text > img {
+    height: @line-height-computed;
 }
+
+// Indicators =================================================================
 
 // Progress bars ==============================================================
 
@@ -48,4 +47,20 @@
 .search-box {
     width: 250px;
     margin-top: 4px;
+}
+
+ul.suggestion {
+    width: 100%;
+    padding: 0;
+    display: table;
+
+    > li {
+        display: table-cell;
+        padding: 0 5px;
+    }
+}
+
+div.page-header,
+div.page-header > h1 {
+    margin-top: 0;
 }
