@@ -1,4 +1,4 @@
-angular.module('app.search.box', ['services.suggestions'])
+angular.module('app.search.box', ['services.storage'])
 
 .controller('SearchBoxCtrl', ['$scope', 'suggestionsService',
 		function ($scope, suggestionsService) {

@@ -13,6 +13,7 @@ module.exports = function(config) {
 
             'bower_components/lodash/dist/lodash.js',
             'bower_components/restangular/dist/restangular.js',
+            'bower_components/angular-notify-toaster/toaster.js',
 
             'src/**/*.js',
             'test/unit/**/*.spec.js',

@@ -11,7 +11,7 @@ angular.module('app', [
 
 	'services.breadcrumbs',
     'services.httpRequestTracker',
-	'services.suggestions',
+	'services.storage',
 
     'app.search',
     'app.dashboard',
