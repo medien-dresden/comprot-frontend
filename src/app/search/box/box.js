@@ -4,7 +4,7 @@ angular.module('app.search.box', ['services.storage'])
 		function ($scope, suggestionsService) {
 	
     $scope.getSuggestions = function(input) {
-        return suggestionsService.getList({query: input}).then(function(list) {
+        return suggestionsService.getList({filter: input}).then(function(list) {
         	return list;
         });
     };
