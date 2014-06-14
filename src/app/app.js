@@ -20,7 +20,7 @@ angular.module('app', [
 
 .config(['$routeProvider', '$locationProvider', 'RestangularProvider',
 		function ($routeProvider, $locationProvider, RestangularProvider) {
-	RestangularProvider.setBaseUrl('http://localhost:8080/');
+	RestangularProvider.setBaseUrl('http://localhost:8080/api');
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
 }])
 
