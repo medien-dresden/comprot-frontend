@@ -7,6 +7,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-contrib-rename');
 
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-html2js');
@@ -18,6 +20,7 @@ module.exports = function (grunt) {
     grunt.registerTask('iterative-build', ['html2js','concat','less:build','copy']);
     grunt.registerTask('build', ['clean','iterative-build']);
     grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy','protractor']);
+    grunt.registerTask('jar', ['compress:jar', 'rename:jar']);
 
     // Print a timestamp (useful for when watching)
     grunt.registerTask('timestamp', function() {
@@ -90,6 +93,19 @@ module.exports = function (grunt) {
                     cwd: 'bower_components/ubuntu-fontface/fonts/',
                     dest: '<%= distdir %>/static/fonts'
                 }]
+            }
+        },
+
+        compress: {
+            jar: {
+                options: { archive: 'app.zip' },
+                files: [{ expand: true, cwd: '<%= distdir %>', src: ['**/*'], dest: 'static' }]
+            }
+        },
+
+        rename: {
+            jar: {
+                files: [{ src: ['app.zip'], dest: '<%= pkg.name %>-<%= pkg.version %>.jar' }]
             }
         },
 
