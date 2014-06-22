@@ -22,5 +22,6 @@ deploy:
     secure: Sulvo7PmYlUASI7uPk8QhL/IdkwKfQ3rKesHcExkm9FwamoI40NDSn0Av33TtkTXWAsI3ttdW9kA5rUinhtMfS2DUJevP9saVOX8LDVojXIBiSCPDVmsLuPY82bBH+Kr0CiPVcCQnOdc5osVP9fC90z0yFraGTXEW5Bzuo4l9iw=
   file: comprot-frontend-1.0.0-SNAPSHOT.jar
   on:
+    tags: true
     repo: medien-dresden/comprot-frontend
     branch: develop
