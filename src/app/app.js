@@ -21,6 +21,11 @@ angular.module('app', [
 .config(['$routeProvider', '$locationProvider', 'RestangularProvider',
 		function ($routeProvider, $locationProvider, RestangularProvider) {
 	RestangularProvider.setBaseUrl('http://localhost:8080/api');
+    RestangularProvider.setDefaultHeaders({
+        'Content-Type': 'application/vnd.comprot-v1.0+json',
+        'Accept': 'application/vnd.comprot-v1.0+json'
+    });
+
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
 }])
 

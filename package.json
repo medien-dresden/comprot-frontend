@@ -3,7 +3,7 @@
   "name": "comprot-frontend",
   "description": "COMPROT AngularJS Frontend",
   "repository": "https://github.com/medien-dresden/comprot-frontend",
-  "version": "1.0.0",
+  "version": "1.0.0-SNAPSHOT",
   "license": "GPLv3",
   "homepage": "https://github.com/medien-dresden/comprot-frontend",
   "copyright": "Medien-Dresden.de",
@@ -29,9 +29,11 @@
     "grunt": "~0.4.5",
     "protractor": "0.23.1",
     "karma": "~0.12.16",
-    "grunt-contrib-less": "~0.11.0",
+    "grunt-contrib-less": "0.10.0",
     "karma-coverage": "~0.2.2",
-    "grunt-karma-coveralls": "~2.5.1"
+    "grunt-karma-coveralls": "~2.5.1",
+    "grunt-contrib-compress": "~0.9.1",
+    "grunt-contrib-rename": "0.0.3"
   },
   "scripts": {
     "install": "bower install && webdriver-manager update",
