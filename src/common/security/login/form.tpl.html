@@ -1,0 +1,28 @@
+<form name="form" novalidate class="login-form form-horizontal">
+    <div class="modal-header">
+        <h4>Sign in or register</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-dismissable alert-warning" ng-show="authReason">{{authReason}}</div>
+        <div class="alert alert-dismissable alert-danger" ng-show="authError">{{authError}}</div>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="login">Username</label>
+                <div class="col-md-4">
+                    <input id="login" name="login" type="text" placeholder="username" ng-model="user.username" class="form-control input-md" required autofocus />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="pass">Password</label>
+                <div class="col-md-4">
+                    <input id="pass" name="pass" type="password" placeholder="password" ng-model="user.password" class="form-control input-md" required />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success login" ng-click="login()" ng-disabled='form.$invalid'>sign in</button>
+        <button type="button" class="btn btn-success" ng-disabled='form.$invalid'>register</button>
+        <button type="button" class="btn btn-warning cancel" ng-click="cancelLogin()">cancel</button>
+    </div>
+</form>
