@@ -5,3 +5,5 @@ reports
 *.log
 !.gitkeep
 *.jar
+.idea
+*.iml
