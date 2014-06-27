@@ -1,7 +1,18 @@
 <li class="dropdown">
-    <a ng-hide="isAuthenticated()" href="#" ng-click="login()">Sign in</a>
-    <a ng-show="isAuthenticated()" href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.username}}</a>
+    <a ng-hide="isAuthenticated()" href="#" ng-click="login()">
+        <span class="glyphicon glyphicon-log-in text-right"></span>&nbsp;&nbsp;
+        Sign in
+    </a>
+    <a ng-show="isAuthenticated()" href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
+        {{currentUser.username}}
+    </a>
     <ul ng-show="isAuthenticated()" class="dropdown-menu">
-        <li><a href="#" ng-click="logout()">Sign out</a></li>
+        <li>
+            <a href="#" ng-click="logout()">
+                <span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;
+                Sign out
+            </a>
+        </li>
     </ul>
 </li>
