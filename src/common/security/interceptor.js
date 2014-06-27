@@ -12,7 +12,7 @@ angular.module('security.interceptor', ['security.retryQueue'])
         },
 
         clearAuthorization: function() {
-            authorizationHeader = null
+            authorizationHeader = null;
         },
 
         'request': function(config) {
@@ -34,7 +34,7 @@ angular.module('security.interceptor', ['security.retryQueue'])
 
             return $q.reject(rejection);
         }
-    }
+    };
 }])
 
 // We have to add the interceptor to the queue as a string because the interceptor depends upon service instances that are not available in the config block.
