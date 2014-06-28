@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     // Default task.
     grunt.registerTask('default', ['jshint','build','karma:unit']);
     grunt.registerTask('iterative-build', ['html2js','concat','less:build','copy']);
+    grunt.registerTask('build-code', ['jshint','html2js','concat','copy']);
     grunt.registerTask('build', ['clean','iterative-build']);
     grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'less:min','copy','protractor']);
     grunt.registerTask('jar', ['compress:jar', 'rename:jar']);
@@ -221,6 +222,11 @@ module.exports = function (grunt) {
             build: {
                 files:['<%= src.js %>', '<%= src.specs %>', '<%= src.lessWatch %>', '<%= src.tpl.app %>', '<%= src.tpl.common %>', '<%= src.html %>'],
                 tasks:['iterative-build','timestamp']
+            },
+
+            code: {
+                files:['<%= src.js %>', '<%= src.specs %>', '<%= src.tpl.app %>', '<%= src.tpl.common %>', '<%= src.html %>'],
+                tasks:['build-code','timestamp']
             }
         },
 

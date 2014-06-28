@@ -65,10 +65,10 @@ angular.module('security.service', [
         },
 
         // Attempt to authenticate a user by the given username and password
-        login: function(username, password) {
+        login: function(username, password, userObj) {
             securityInterceptor.setAuthorization(username, password);
 
-            return usersService.one('me').get().then(function(user) {
+            var acceptUser = function(user) {
                 service.currentUser = user;
 
                 if (service.isAuthenticated()) {
@@ -76,10 +76,16 @@ angular.module('security.service', [
                 }
 
                 return service.isAuthenticated();
+            };
 
-            }, function(something) {
-                // something went wrong
-            });
+            if (userObj!== null) {
+                return acceptUser(userObj);
+
+            } else {
+                return usersService.one('me').get().then(acceptUser, function(something) {
+                    // something went wrong
+                });
+            }
         },
 
         // Give up trying to login and clear the retry queue

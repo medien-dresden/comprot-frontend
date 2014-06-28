@@ -16,7 +16,7 @@ angular.module('security.interceptor', ['security.retryQueue'])
         },
 
         'request': function(config) {
-            if (authorizationHeader) {
+            if (authorizationHeader !== null) {
                 config.headers['Authorization'] = authorizationHeader;
             }
 
