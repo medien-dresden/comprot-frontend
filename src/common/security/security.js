@@ -121,7 +121,7 @@ angular.module('security.service', [
     
         // Is the current user an administrator?
         isAdmin: function() {
-            return !!(service.currentUser && service.currentUser.admin);
+            return !!(service.currentUser && service.currentUser.roles.indexOf('ROLE_ADMIN') !== -1);
         }
     };
 
