@@ -7,8 +7,8 @@ angular.module('security.service', [
     'base64'
 ])
 
-.factory('security', ['$http', '$q', '$location', 'securityRetryQueue', '$modal', 'usersService', 'securityInterceptor',
-    function($http, $q, $location, queue, $modal, usersService, securityInterceptor) {
+.factory('security', ['$http', '$q', '$location', 'securityRetryQueue', '$modal', 'userService', 'securityInterceptor',
+    function($http, $q, $location, queue, $modal, userService, securityInterceptor) {
 
     // Login form dialog stuff
     var loginDialog = null;
@@ -82,7 +82,7 @@ angular.module('security.service', [
                 return acceptUser(userObj);
 
             } else {
-                return usersService.one('me').get().then(acceptUser, function(something) {
+                return userService.one('me').get().then(acceptUser, function(something) {
                     // something went wrong
                 });
             }
@@ -104,7 +104,7 @@ angular.module('security.service', [
             if (service.isAuthenticated()) {
                 return $q.when(service.currentUser);
             } else {
-                return usersService.one('me').get().then(function(response) {
+                return userService.one('me').get().then(function(response) {
                     service.currentUser = response.data.user;
                     return service.currentUser;
                 });

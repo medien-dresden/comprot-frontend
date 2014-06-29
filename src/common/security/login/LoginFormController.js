@@ -2,8 +2,8 @@ angular.module('security.login.form', ['services.localizedMessages'])
 
 // The LoginFormController provides the behaviour behind a reusable form to allow users to authenticate.
 // This controller and its template (login/form.tpl.html) are used in a modal dialog box by the security service.
-.controller('LoginFormController', ['$scope', 'security', 'localizedMessages', 'usersService', 'httpRequestTracker',
-        function($scope, security, localizedMessages, usersService, httpRequestTracker) {
+.controller('LoginFormController', ['$scope', 'security', 'localizedMessages', 'userService', 'httpRequestTracker',
+        function($scope, security, localizedMessages, userService, httpRequestTracker) {
 
     // The model for this form
     $scope.user = {};
@@ -33,7 +33,7 @@ angular.module('security.login.form', ['services.localizedMessages'])
         $scope.authError = null;
         $scope.fields = {};
 
-        usersService.post({
+        userService.post({
             username: $scope.user.username,
             password: $scope.user.password,
             email: $scope.user.email,

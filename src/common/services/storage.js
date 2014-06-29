@@ -1,8 +1,13 @@
 angular.module('services.storage', [])
 
-.factory('suggestionsService', ['Restangular', function(Restangular) {
+.factory('suggestionService', ['Restangular', function(Restangular) {
 	return Restangular.service('suggestions');
 }])
-.factory('usersService', ['Restangular', function(Restangular) {
+
+.factory('searchService', ['Restangular', function(Restangular) {
+	return Restangular.service('searches');
+}])
+
+.factory('userService', ['Restangular', function(Restangular) {
    	return Restangular.service('users');
 }]);
