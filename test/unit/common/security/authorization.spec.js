@@ -1,4 +1,4 @@
-describe('securityAuthorization', function() {
+xdescribe('securityAuthorization', function() {
   var $rootScope, security, securityAuthorization, queue;
   var userResponse, resolved;
 

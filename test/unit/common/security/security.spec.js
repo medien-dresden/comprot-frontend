@@ -1,4 +1,4 @@
-describe('security', function() {
+xdescribe('security', function() {
 
   var $rootScope, $http, $httpBackend, status, userInfo;
   

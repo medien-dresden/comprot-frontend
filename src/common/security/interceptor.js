@@ -1,4 +1,4 @@
-angular.module('security.interceptor', ['security.retryQueue'])
+angular.module('security.interceptor', ['security.retryQueue', 'base64'])
 
 // This http interceptor listens for authentication failures
 .factory('securityInterceptor', ['$injector', '$q', 'securityRetryQueue', 'base64',
