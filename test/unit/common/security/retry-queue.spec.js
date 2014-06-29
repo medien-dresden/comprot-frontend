@@ -1,4 +1,4 @@
-xdescribe('securityRetryQueue', function() {
+describe('securityRetryQueue', function() {
   var queue;
 
   function mockRetryItem() {

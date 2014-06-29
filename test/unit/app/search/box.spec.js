@@ -2,14 +2,14 @@ describe('search', function() {
 
 	var $q,
 		$scope,
-		suggestionsService;
+		suggestionService;
 
 	beforeEach(module('app'));
 
 	beforeEach(inject(function($rootScope, $controller, _$q_,
-			_suggestionsService_) {
+			_suggestionService_) {
 
-		suggestionsService = _suggestionsService_;
+		suggestionService = _suggestionService_;
 
 		$q = _$q_;
         $scope = $rootScope.$new();
@@ -25,7 +25,7 @@ describe('search', function() {
 			var deferred = $q.defer(),
 				suggestions = ['s1', 's2'];
 
-			spyOn(suggestionsService, 'getList').andReturn(deferred.promise);
+			spyOn(suggestionService, 'getList').andReturn(deferred.promise);
 
 			$scope.getSuggestions('test').then(function(data) {
 				expect(data).toBe(suggestions);
@@ -34,7 +34,7 @@ describe('search', function() {
 			deferred.resolve(suggestions);
 			$scope.$apply();
 
-			expect(suggestionsService.getList)
+			expect(suggestionService.getList)
 					.toHaveBeenCalledWith({ filter: 'test' });
 		});
 
