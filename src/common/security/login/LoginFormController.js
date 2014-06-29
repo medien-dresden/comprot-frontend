@@ -2,8 +2,8 @@ angular.module('security.login.form', ['services.localizedMessages'])
 
 // The LoginFormController provides the behaviour behind a reusable form to allow users to authenticate.
 // This controller and its template (login/form.tpl.html) are used in a modal dialog box by the security service.
-.controller('LoginFormController', ['$scope', 'security', 'localizedMessages', 'usersService',
-        function($scope, security, localizedMessages, usersService) {
+.controller('LoginFormController', ['$scope', 'security', 'localizedMessages', 'usersService', 'httpRequestTracker',
+        function($scope, security, localizedMessages, usersService, httpRequestTracker) {
 
     // The model for this form
     $scope.user = {};
@@ -13,6 +13,10 @@ angular.module('security.login.form', ['services.localizedMessages'])
 
     // Any error message from failing to login
     $scope.authError = null;
+
+    $scope.isBusy = function() {
+        return httpRequestTracker.hasPendingRequests();
+    };
 
     // The reason that we are being asked to login - for instance because we tried to access something to which we are not authorized
     // We could do something different for each reason here but to keep it simple...
@@ -39,7 +43,7 @@ angular.module('security.login.form', ['services.localizedMessages'])
             security.login($scope.user.username, $scope.user.password, user);
 
         }, function(responseError) {
-            if (responseError.status === 400) {
+            if (responseError.status === 400 || responseError.status === 409) {
                 $scope.authError = localizedMessages.get('login.error.validationFailure');
                 $scope.invalidFields = [];
                 angular.forEach(responseError.data.violations, function(value, key) {
