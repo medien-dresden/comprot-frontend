@@ -1,22 +1,26 @@
-<script type="text/ng-template" id="search/box/suggestions.tpl.html">
-	<a>
-		<ul class="suggestion">
-			<li bind-html-unsafe="match.label | typeaheadHighlight:query"></li>
-			<li class="text-right">({{match.model.hits}})</li>
-		</ul>
-	</a>
+<script type="text/ng-template" id="search/box/suggestion.tpl.html">
+    <a ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)">
+        <ul class="suggestion">
+            <li bind-html-unsafe="match.label | typeaheadHighlight:query"></li>
+            <li class="text-right">
+                <span class="badge" bind-html-unsafe="match.model.hits"></span>
+            </li>
+        </ul>
+    </a>
 </script>
 <div ng-controller="SearchBoxCtrl" class="form-group search-box">
 	<div class="input-group input-group-sm">
-		<input type="text" class="form-control" ng-model="filter"
+		<input type="text" class="form-control" ng-model="query"
+            autofocus="autofocus"
 			placeholder="Search..."
-			typeahead="item.label for item in getSuggestions(filter)"
-			typeahead-template-url="search/box/suggestions.tpl.html"
-			typeahead-append-to-body="true"
-			typeahead-min-length="3"
-			typeahead-wait-ms="300">
+            typeahead-on-select="search(query)"
+			typeahead="item.label for item in getSuggestions(query)"
+			typeahead-template-url="search/box/suggestion.tpl.html"
+			typeahead-wait-ms="100">
 		<span class="input-group-btn">
-			<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+			<button class="btn btn-default" type="button" ng-click="search(query)" ng-disabled="!!!query">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
 		</span>
 	</div>
 </div>

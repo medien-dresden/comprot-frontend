@@ -1,10 +1,10 @@
-angular.module('app.search.box', ['services.storage'])
+angular.module('app.search.box', [])
 
-.controller('SearchBoxCtrl', ['$scope', 'suggestionsService',
-		function ($scope, suggestionsService) {
-	
+.controller('SearchBoxCtrl', ['$scope', 'suggestionService',
+		function ($scope, suggestionService, searchConfig) {
+
     $scope.getSuggestions = function(input) {
-        return suggestionsService.getList({filter: input}).then(function(list) {
+        return suggestionService.getList({filter: input}).then(function(list) {
         	return list;
         });
     };
