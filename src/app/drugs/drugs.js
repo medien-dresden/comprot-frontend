@@ -11,6 +11,4 @@ angular.module('app.drugs', [])
 	
 }]);
 
-function AccordionCtrl($scope) {
-  $scope.oneAtATime = true;
-}
+

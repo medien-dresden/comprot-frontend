@@ -3,34 +3,43 @@
     <li class="active">Proteins</li>
 </ul>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <table class="table table-striped table-hover ">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Name</th>
-                <th>UniProt ID</th>
-                <th>Synonyms</th>
-                <th>Drugs</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>[]</td>
-                <td>test protein</td>
-                <td>1</td>
-                <td>show</td>
-                <td>show</td>
-            </tr>
-            <tr>
-                <td>[]</td>
-                <td>next test protein</td>
-                <td>2</td>
-                <td>show</td>
-                <td>show</td>
-            </tr>
-            </tbody>
-        </table>
+<div class="panel panel-default filterable">
+    <div class="panel-heading">
+        <h3 class="panel-title">Drug Workbench</h3>
+        <div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								<i class="glyphicon glyphicon-filter"></i>
+							</span>
+        </div>
     </div>
+    <div class="panel-body">
+        <input type="text" class="form-control" id="drug-table-filter" data-action="filter" data-filters="#drug-table" placeholder="Filter Drugs by Taxonomy" />
+    </div>
+    <table class="table table-hover" id="drug-table">
+        <thead>
+        <tr>
+            <th><input type="checkbox" id="checkall" /></th>
+            <th>Name</th>
+            <th>UniProt ID</th>
+            <th>Synonyms</th>
+            <th>Drugs</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="checkbox" class="checkthis" /></td>
+            <td>test protein</td>
+            <td>1</td>
+            <td>show</td>
+            <td>show</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="checkthis" /></td>
+            <td>next test protein</td>
+            <td>2</td>
+            <td>show</td>
+            <td>show</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
