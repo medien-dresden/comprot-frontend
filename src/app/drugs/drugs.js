@@ -10,5 +10,3 @@ angular.module('app.drugs', [])
 .controller('DrugsCtrl', ['$scope', function ($scope) {
 	
 }]);
-
-
