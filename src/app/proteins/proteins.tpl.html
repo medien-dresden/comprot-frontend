@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="panel-body">
-        <input type="text" class="form-control" id="drug-table-filter" data-action="filter" data-filters="#drug-table" placeholder="Filter Drugs by Taxonomy" />
+        <input type="text" class="form-control" id="drug-table-filter" data-action="filter" data-filters="#drug-table" placeholder="Filter Drugs by Taxonomy (usually collapsed, click filter to show this field)" />
     </div>
     <table class="table table-hover" id="drug-table">
         <thead>
@@ -43,4 +43,12 @@
         </tr>
         </tbody>
     </table>
+</div>
+
+<div class="form-group">
+    <div>
+        <button type="submit" class="btn btn-primary">Find Drugs for all selected Proteins</button>
+        <button class="btn btn-default">Export as CSV</button>
+        <button class="btn btn-default">Delete from Workbench</button>
+    </div>
 </div>
