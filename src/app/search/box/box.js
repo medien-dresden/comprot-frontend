@@ -4,7 +4,7 @@ angular.module('app.search.box', [])
 		function ($scope, suggestionService, searchConfig) {
 
     $scope.getSuggestions = function(input) {
-        return suggestionService.getList({filter: input}).then(function(list) {
+        return suggestionService.getList({q: input}).then(function(list) {
         	return list;
         });
     };
