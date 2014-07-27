@@ -19,14 +19,14 @@
                             <!--suppress XmlInvalidId -->
                             <div class="col-md-4">
                                 <div class="checkbox">
-                                    <label for="checkboxesType-0">
-                                        <input type="checkbox" name="cbType" id="checkboxesType-0" value="1">
+                                    <label for="checkboxDrugs">
+                                        <input type="checkbox" name="cbDrugs" id="checkboxDrugs" value="1" ng-model="showDrugs">
                                         Drugs
                                     </label>
                                 </div>
                                 <div class="checkbox">
-                                    <label for="checkboxesType-1">
-                                        <input type="checkbox" name="checkboxesType" id="checkboxesType-1" value="2">
+                                    <label for="checkboxProteins">
+                                        <input type="checkbox" name="cbProteins" id="checkboxProteins" value="2" ng-model="showProteins">
                                         Proteins
                                     </label>
                                 </div>
@@ -56,7 +56,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in result">
+            <tr ng-repeat="item in result| filter: showTypes">
                 <td><input type="checkbox" class="checkthis" /></td>
                 <td>{{ item.type }}</td>
                 <td>{{ item.name }}</td>
