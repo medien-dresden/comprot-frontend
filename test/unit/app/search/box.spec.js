@@ -35,7 +35,7 @@ describe('search', function() {
 			$scope.$apply();
 
 			expect(suggestionService.getList)
-					.toHaveBeenCalledWith({ filter: 'test' });
+					.toHaveBeenCalledWith({ q: 'test' });
 		});
 
 	});
