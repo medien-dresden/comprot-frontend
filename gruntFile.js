@@ -170,6 +170,8 @@ module.exports = function (grunt) {
             thirdparty: {
                 src: [
                     'bower_components/lodash/dist/lodash.js',
+                    'bower_components/jquery/dist/jquery.js',
+                    'bower_components/bootstrap/dist/js/bootstrap.js',
                     'bower_components/restangular/dist/restangular.js',
                     'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
                     'bower_components/angular-notify-toaster/toaster.js'
