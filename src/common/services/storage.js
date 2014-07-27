@@ -1,18 +1,32 @@
 angular.module('services.storage', [])
 
 .config(function(RestangularProvider) {
-    RestangularProvider.addResponseInterceptor(function(data, operation) {
-        var extractedData;
+	RestangularProvider.setResponseExtractor(function(data, operation) {
+	    var extractedData,
+            setupSelfLink = function(data) {
+            angular.forEach(data.links, function(link) {
+                if (!angular.isUndefined(link.rel) && link.rel === 'self') {
+                    data.href = link.href;
+                    return;
+                }
+            });
+        };
 
         if (operation === 'getList' && !angular.isUndefined(data.page)) {
+            angular.forEach(data.content, function(item) {
+                setupSelfLink(item);
+            });
+        
             extractedData = data.content;
             extractedData.links = data.links;
             extractedData.page = data.page;
+            
         } else {
+            setupSelfLink(data)
             extractedData = data;
         }
 
-        return extractedData;
+	    return extractedData;
     });
 })
 

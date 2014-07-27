@@ -37,6 +37,10 @@ angular.module('app', [
         'Accept': 'application/vnd.comprot-v1.0+json'
     });
 
+    RestangularProvider.setRestangularFields({
+        id: "entityId"
+    });
+
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
 }])
 
