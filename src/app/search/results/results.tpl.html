@@ -2,9 +2,9 @@
     <li class="active">COMPROT Search</li>
 </ul>
 
-<div ng-controller="ResultsAccordionCtrl">
+<div ng-controller="ResultsCtrl">
     <accordion close-others="false">
-        <accordion-group is-open="status.open">
+        <accordion-group>
             <accordion-heading>
                 Drugs <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </accordion-heading>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </accordion-group>
-        <accordion-group is-open="status.open">
+        <accordion-group>
             <accordion-heading>
                 Proteins <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </accordion-heading>

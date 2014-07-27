@@ -50,12 +50,6 @@ angular.module('app', [
         diseases: 0
     };
 
-    $scope.search = function(query) {
-        if (!!query && query.length > 0) {
-            console.log(query);
-        }
-    };
-    
 	$scope.isActiveView = function (path) {
 		return path === breadcrumbs.getFirst().name;
 	};
