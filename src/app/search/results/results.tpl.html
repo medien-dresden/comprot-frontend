@@ -39,12 +39,19 @@
     </div>
     <div class="col-md-10 column">
         <table class="table table-hover" id="results-table">
+            <colgroup>
+                <col width="1%">
+                <col width="1%">
+                <col width="48%">
+                <col width="48%">
+                <col width="2%">
+            </colgroup>
             <thead>
             <tr>
                 <th><input type="checkbox" id="checkall" /></th>
-                <th>Type</th>
-                <th>Name</th>
                 <th></th>
+                <th>Name</th>
+                <th>Synonyms</th>
                 <th></th>
             </tr>
             </thead>
@@ -52,7 +59,7 @@
             <tr ng-repeat="item in result">
                 <td><input type="checkbox" class="checkthis" /></td>
                 <td>{{ item.type }}</td>
-                <td><strong>{{ item.name }}</strong></td>
+                <td>{{ item.name }}</td>
                 <td>
                     <ul><li ng-repeat="synonym in item.synonyms"> {{ synonym }}</li></ul>
                 </td>
