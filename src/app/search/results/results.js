@@ -13,15 +13,25 @@ angular.module('app.search.results', ['services.storage'])
 
     $scope.showDrugs = true;
     $scope.showProteins = true;
+    
+    $scope.totalPages = 0;
+    $scope.totalElements = 0;
+    $scope.currentPage = 0;
 
     $scope.showTypes = function(item){
         return (item.type === 'DRUG' && $scope.showDrugs) ||
             (item.type === 'PROTEIN' && $scope.showProteins);
     };
+    
+    $scope.pageSelected = function() {
+        $scope.search($routeParams.query, $scope.currentPage);
+    }; 
 
     $scope.search = function(query, page) {
-        entityService.getList({q: query, page: page}).then(function(list) {
+        return entityService.getList({q: query, page: page}).then(function(list) {
             $scope.result = list;
+            $scope.totalPages = list.page.totalPages;
+            $scope.totalElements = list.page.totalElements;
         });
     };
 
