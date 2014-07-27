@@ -49,17 +49,34 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in result" ng-click="isCollapsed = !isCollapsed">
+            <tr ng-repeat="item in result">
                 <td><input type="checkbox" class="checkthis" /></td>
                 <td>{{ item.type }}</td>
                 <td><strong>{{ item.name }}</strong></td>
                 <td>
-                    <div collapse="isCollapsed">
-                        <ul><li ng-repeat="synonym in item.synonyms"> {{ synonym }}</li></ul>
-                    </div>
+                    <ul><li ng-repeat="synonym in item.synonyms"> {{ synonym }}</li></ul>
                 </td>
                 <td>
-                    <button class="btn btn-default">Details</button>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#modal">Details</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Schließen</span></button>
+                                    <h4 class="modal-title" id="modalLabel">Modal</h4>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
