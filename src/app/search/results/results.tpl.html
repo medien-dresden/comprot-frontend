@@ -1,87 +1,69 @@
+<div ng-controller="ResultsCtrl"></div>
+
 <ul class="breadcrumb">
     <li class="active">COMPROT Search</li>
 </ul>
 
-<div ng-controller="ResultsCtrl">
-    <accordion close-others="false">
-        <accordion-group>
-            <accordion-heading>
-                Drugs <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-            </accordion-heading>
-            <div class="pull-right">
-							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-								<i class="glyphicon glyphicon-filter"></i>
-							</span>
+<div class="row clearfix">
+    <div class="col-md-2 column">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Filters
+                </h3>
             </div>
-            <table class="table table-striped table-hover" id="drug-result-table">
-                <thead>
-                <tr>
-                    <td><input type="checkbox" class="checkall" /></td>
-                    <th>Name</th>
-                    <th>PubChem ID</th>
-                    <th>Synonyms</th>
-                    <th>Proteins</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><input type="checkbox" class="checkthis" /></td>
-                    <td>test drug</td>
-                    <td>1</td>
-                    <td>show</td>
-                    <td>show</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="checkthis" /></td>
-                    <td>next test drug</td>
-                    <td>2</td>
-                    <td>show</td>
-                    <td>show</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="form-group">
-                <div>
-                    <button class="btn btn-default">Copy to Workbench</button>
-                </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <!--suppress XmlInvalidId -->
+                            <div class="col-md-4">
+                                <div class="checkbox">
+                                    <label for="checkboxesType-0">
+                                        <input type="checkbox" name="cbType" id="checkboxesType-0" value="1">
+                                        Drugs
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label for="checkboxesType-1">
+                                        <input type="checkbox" name="checkboxesType" id="checkboxesType-1" value="2">
+                                        Proteins
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-        </accordion-group>
-        <accordion-group>
-            <accordion-heading>
-                Proteins <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-            </accordion-heading>
-            <div class="pull-right">
-							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-								<i class="glyphicon glyphicon-filter"></i>
-							</span>
-            </div>
-            <table class="table table-striped table-hover" id="protein-result-table">
-                <thead>
-                <tr>
-                    <td><input type="checkbox" class="checkall" /></td>
-                    <th>Name</th>
-                    <th>UniProt ID</th>
-                    <th>Synonyms</th>
-                    <th>Drugs</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><input type="checkbox" class="checkthis" /></td>
-                    <td>test protein</td>
-                    <td>1</td>
-                    <td>show</td>
-                    <td>show</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" class="checkthis" /></td>
-                    <td>next test protein</td>
-                    <td>2</td>
-                    <td>show</td>
-                    <td>show</td>
-                </tr>
-                </tbody>
-            </table>
-        </accordion-group>
-    </accordion>
+        </div>
+    </div>
+    <div class="col-md-10 column">
+        <table class="table table-hover" id="results-table">
+            <thead>
+            <tr>
+                <th><input type="checkbox" id="checkall" /></th>
+                <th>Type</th>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in result" ng-click="isCollapsed = !isCollapsed">
+                <td><input type="checkbox" class="checkthis" /></td>
+                <td>{{ item.type }}</td>
+                <td><strong>{{ item.name }}</strong></td>
+                <td>
+                    <div collapse="isCollapsed">
+                        <ul><li ng-repeat="synonym in item.synonyms"> {{ synonym }}</li></ul>
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-default">Details</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+

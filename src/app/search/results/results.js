@@ -9,7 +9,7 @@ angular.module('app.search.results', ['services.storage'])
 
 .controller('ResultsCtrl', ['$scope', '$routeParams', 'entityService',
         function ($scope, $routeParams, entityService) {
-    $scope.result = {};
+    $scope.result = [];
 
     $scope.search = function(query, page) {
         entityService.getList({q: query, page: page}).then(function(list) {
@@ -18,5 +18,7 @@ angular.module('app.search.results', ['services.storage'])
     };
 
     $scope.search($routeParams.query, 0);
+
+    $scope.isCollapsed = true;
 
 }]);
