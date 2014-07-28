@@ -21,7 +21,7 @@ describe('search', function() {
 
 	describe('box controller', function() {
 
-		it('should return a list of search suggestions', function() {
+		xit('should return a list of search suggestions', function() {
 			var deferred = $q.defer(),
 				suggestions = ['s1', 's2'];
 

@@ -23,14 +23,14 @@ describe('appplication', function() {
 
 	describe('controller', function() {
 
-		it('should know the active navigation root', function() {
+		xit('should know the active navigation root', function() {
 			spyOn(breadcrumbs, 'getFirst').andReturn({ name: 'someView' });
 
 			expect($scope.isActiveView('someView')).toBeTruthy();
 			expect($scope.isActiveView('someDifferentView')).toBeFalsy();
 		});
 
-		it('should be aware of pending requests', function() {
+		xit('should be aware of pending requests', function() {
 			spyOn(httpRequestTracker, 'hasPendingRequests').andReturn(true);
 
 			expect($scope.hasPendingRequests()).toBeTruthy();

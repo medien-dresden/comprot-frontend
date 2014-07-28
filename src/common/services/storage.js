@@ -1,6 +1,6 @@
-angular.module('services.storage', [])
+angular.module('services.storage', ['restangular'])
 
-.config(function(RestangularProvider) {
+.config(['RestangularProvider', function(RestangularProvider) {
 	RestangularProvider.setResponseExtractor(function(data, operation) {
 	    var extractedData,
             setupSelfLink = function(data) {
@@ -22,13 +22,13 @@ angular.module('services.storage', [])
             extractedData.page = data.page;
             
         } else {
-            setupSelfLink(data)
+            setupSelfLink(data);
             extractedData = data;
         }
 
 	    return extractedData;
     });
-})
+}])
 
 .factory('suggestionService', ['Restangular', function(Restangular) {
 	return Restangular.service('suggestions');
