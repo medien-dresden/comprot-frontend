@@ -85,15 +85,6 @@ module.exports = function (grunt) {
                     cwd: 'bower_components/bootstrap/fonts/',
                     dest: '<%= distdir %>/static/fonts'
                 }]
-            },
-
-            ubuntuFonts: {
-                files: [{
-                    src : '**',
-                    expand: true,
-                    cwd: 'bower_components/ubuntu-fontface/fonts/',
-                    dest: '<%= distdir %>/static/fonts'
-                }]
             }
         },
 
