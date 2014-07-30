@@ -16,7 +16,8 @@ angular.module('app', [
 
     'app.search',
     'app.dashboard',
-    'app.drugs'
+    'app.compounds',
+    'app.targets'
 ])
 
 //TODO: move those messages to a separate module
@@ -49,8 +50,8 @@ angular.module('app', [
 
     // FIXME delete
     $scope.model = {
-        drugs: 0,
-        proteins: 0,
+        compounds: 0,
+        targets: 0,
         diseases: 0
     };
 

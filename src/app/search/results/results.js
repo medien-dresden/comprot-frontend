@@ -11,16 +11,16 @@ angular.module('app.search.results', ['services.storage'])
         function ($scope, $routeParams, entityService) {
     $scope.result = [];
 
-    $scope.showDrugs = true;
-    $scope.showProteins = true;
+    $scope.showCompounds = true;
+    $scope.showTargets = true;
     
     $scope.totalPages = 0;
     $scope.totalElements = 0;
     $scope.currentPage = 0;
 
     $scope.showTypes = function(item){
-        return (item.type === 'DRUG' && $scope.showDrugs) ||
-            (item.type === 'PROTEIN' && $scope.showProteins);
+        return (item.type === 'COMPOUND' && $scope.showCompounds) ||
+            (item.type === 'TARGET' && $scope.showTargets);
     };
     
     $scope.pageSelected = function() {
