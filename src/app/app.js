@@ -18,8 +18,6 @@ angular.module('app', [
     'app.dashboard',
     'app.compounds',
     'app.targets',
-    'app.targetdetails',
-    'app.compounddetails'
 ])
 
 //TODO: move those messages to a separate module

@@ -1,20 +1,13 @@
-<div ng-controller="TargetDetailsCtrl">
-
-    <ul class="breadcrumb">
-        <li><a href="#">COMPROT Search</a></li>
-        <li><a href="#">Targets</a></li>
-        <li class="active">Details for Target</li>
-    </ul>
-
+<div ng-controller="CompoundDetailsCtrl">
     <div class="panel panel-default">
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
-                    <legend>Target name</legend>
+                    <legend>{{id}}</legend>
                     <div class="form-group">
-                        <label for="uniprotId" class="col-lg-2 control-label">UniProt ID:</label>
+                        <label for="pubchemId" class="col-lg-2 control-label">PubChem ID:</label>
                         <div class="col-lg-10">
-                            <label id="uniprotId">123</label>
+                            <label id="pubchemId">123</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -25,10 +18,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="drugs" class="col-lg-2 control-label">Compounds:</label>
+                        <label for="proteins" class="col-lg-2 control-label">Targets:</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" id="drugs"></textarea>
-                            <span class="help-block">All the compounds.</span>
+                            <textarea class="form-control" rows="3" id="proteins"></textarea>
+                            <span class="help-block">All the target targets.</span>
                         </div>
                     </div>
                     <div class="form-group">

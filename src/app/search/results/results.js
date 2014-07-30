@@ -7,8 +7,8 @@ angular.module('app.search.results', ['services.storage'])
     });
 }])
 
-.controller('ResultsCtrl', ['$scope', '$routeParams', 'entityService',
-        function ($scope, $routeParams, entityService) {
+.controller('ResultsCtrl', ['$scope', '$location', '$routeParams', 'entityService',
+        function ($scope, $location, $routeParams, entityService) {
     $scope.result = [];
 
     $scope.showCompounds = true;
@@ -17,6 +17,10 @@ angular.module('app.search.results', ['services.storage'])
     $scope.totalPages = 0;
     $scope.totalElements = 0;
     $scope.currentPage = 0;
+
+    $scope.showDetails = function(item) {
+        $location.path((item.type === 'TARGET' ? 'targets/' : 'compounds/') + item.id);
+    };
 
     $scope.showTypes = function(item){
         return (item.type === 'COMPOUND' && $scope.showCompounds) ||
