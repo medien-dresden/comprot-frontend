@@ -3,29 +3,36 @@ angular.module('services.storage', ['restangular'])
 .config(['RestangularProvider', function(RestangularProvider) {
 	RestangularProvider.setResponseExtractor(function(data, operation) {
 	    var extractedData,
-            setupSelfLink = function(data) {
+            links = {},
+            setupLinks = function(data) {
             angular.forEach(data.links, function(link) {
-                if (!angular.isUndefined(link.rel) && link.rel === 'self') {
-                    data.href = link.href;
+                if (angular.isUndefined(link.rel) || angular.isUndefined(link.href)) {
                     return;
                 }
+
+                if (link.rel === 'self') {
+                    data.href = link.href;
+                } else {
+                    links[link.rel] = link.href;
+                }
             });
+
+            data.links = links;
         };
 
         if (operation === 'getList' && !angular.isUndefined(data.page)) {
             angular.forEach(data.content, function(item) {
-                setupSelfLink(item);
+                setupLinks(item);
             });
-        
+
             extractedData = data.content;
-            extractedData.links = data.links;
             extractedData.page = data.page;
-            
+
         } else {
-            setupSelfLink(data);
             extractedData = data;
         }
 
+        setupLinks(data);
 	    return extractedData;
     });
 }])
