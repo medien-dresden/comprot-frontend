@@ -1,7 +1,7 @@
 angular.module('app.search.results', ['services.storage'])
 
 .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/results/:query', {
+    $routeProvider.when('/search/:query', {
         templateUrl: 'search/results/results.tpl.html',
         controller: 'ResultsCtrl'
     });

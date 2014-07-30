@@ -13,7 +13,7 @@ angular.module('app.search.box', ['services.storage'])
 
     $scope.search = function(query) {
         if (!!query && query.length > 0) {
-            $location.path('/results/' + query);
+            $location.path('/search/' + query);
         }
     };
 
