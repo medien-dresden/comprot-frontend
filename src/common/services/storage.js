@@ -17,7 +17,10 @@ angular.module('services.storage', ['restangular'])
                     }
                 });
 
-                data.id = data.href.split('/').pop();
+                if (!angular.isUndefined(data.href)) {
+                    data.id = data.href.split('/').pop();
+                }
+
                 data.links = links;
             };
 
