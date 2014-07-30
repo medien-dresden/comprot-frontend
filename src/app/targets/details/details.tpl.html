@@ -3,25 +3,39 @@
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
-                    <legend>{{id}}</legend>
+                    <legend>{{name}}</legend>
                     <div class="form-group">
-                        <label for="uniprotId" class="col-lg-2 control-label">UniProt ID:</label>
+                        <label for="type" class="col-lg-2 control-label">Type:</label>
                         <div class="col-lg-10">
-                            <label id="uniprotId">123</label>
+                            <label id="type">{{type}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sourceId" class="col-lg-2 control-label">Source-ID:</label>
+                        <div class="col-lg-10">
+                            <label id="sourceId">{{sourceId}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="taxonomyId" class="col-lg-2 control-label">Taxonomy-ID:</label>
+                        <div class="col-lg-10">
+                            <label id="taxonomyId">{{taxonomyId}}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="synonyms" class="col-lg-2 control-label">Synonyms:</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" id="synonyms"></textarea>
-                            <span class="help-block">All the synonyms.</span>
+                            <!--textarea class="form-control" rows="3" id="synonyms"></textarea>
+                            <span class="help-block">All the synonyms.</span-->
+                        <ul><li id="synonyms" ng-repeat="synonym in synonyms">{{ synonym }}</li></ul>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="drugs" class="col-lg-2 control-label">Compounds:</label>
+                        <label for="compound" class="col-lg-2 control-label">Compounds:</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" id="drugs"></textarea>
-                            <span class="help-block">All the compounds.</span>
+                            <!--textarea class="form-control" rows="3" id="drugs"></textarea>
+                            <span class="help-block">All the compounds.</span-->
+                            <ul><li id="compound" ng-repeat="compound in compounds">{{ compound }}</li></ul>
                         </div>
                     </div>
                     <div class="form-group">
