@@ -53,7 +53,7 @@
                 <tbody>
                 <tr ng-repeat="item in result | filter:showTypes">
                     <td><input type="checkbox" class="checkthis" /></td>
-                    <td>{{ item.type }}</td>
+                    <td ng-bind-html="item.type | toEntityIcon"></td>
                     <td>{{ item.name }}</td>
                     <td>
                         <ul><li ng-repeat="synonym in item.synonyms">{{ synonym }}</li></ul>

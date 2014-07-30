@@ -2,6 +2,7 @@ angular.module('app', [
     'ngRoute',
     'ngResource',
     'ngAnimate',
+
     'ui.bootstrap',
     'restangular',
     'toaster',
@@ -53,4 +54,10 @@ angular.module('app', [
         return httpRequestTracker.hasPendingRequests();
     };
     
+}])
+
+.filter('toEntityIcon', ['$sce', function($sce) {
+    return function(entityType) {
+        return $sce.trustAsHtml('<span class="entity-icon entity-icon-' + entityType.toLowerCase() + '"></span>');
+    };
 }]);
