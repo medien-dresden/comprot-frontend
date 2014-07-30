@@ -61,7 +61,7 @@
                     <td>{{ item.type }}</td>
                     <td>{{ item.name }}</td>
                     <td>
-                        <ul><li ng-repeat="synonym in item.synonyms"> {{ synonym }}</li></ul>
+                        <ul><li ng-repeat="synonym in item.synonyms">{{ synonym }}</li></ul>
                     </td>
                     <td>
                         <button class="btn btn-default" data-toggle="modal" data-target="#modal">Details</button>
@@ -92,8 +92,8 @@
     <div class="row clearfix">
         <div class="col-md-12 column text-right">
             <pagination total-items="totalElements"
-                        ng-model="currentPage"
-                        ng-change="pageChanged"
+                        page="currentPage"
+                        on-select-page="pageSelected(page)"
                         max-size="10"
                         class="pagination-md"
                         rotate="false"

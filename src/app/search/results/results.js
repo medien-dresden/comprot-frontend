@@ -23,12 +23,12 @@ angular.module('app.search.results', ['services.storage'])
             (item.type === 'TARGET' && $scope.showTargets);
     };
     
-    $scope.pageSelected = function() {
-        $scope.search($routeParams.query, $scope.currentPage);
-    }; 
+    $scope.pageSelected = function(page) {
+        $scope.search($routeParams.query, page - 1);
+    };
 
     $scope.search = function(query, page) {
-        return entityService.getList({q: query, page: page}).then(function(list) {
+        entityService.getList({q: query, page: page}).then(function(list) {
             $scope.result = list;
             $scope.totalPages = list.page.totalPages;
             $scope.totalElements = list.page.totalElements;
