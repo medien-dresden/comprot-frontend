@@ -1,41 +1,45 @@
-<ul class="breadcrumb">
-    <li><a href="#">COMPROT Search</a></li>
-    <li><a href="#">Targets</a></li>
-    <li class="active">Details for Target</li>
-</ul>
+<div ng-controller="TargetDetailsCtrl">
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>Target name</legend>
-                <div class="form-group">
-                    <label for="uniprotId" class="col-lg-2 control-label">UniProt ID:</label>
-                    <div class="col-lg-10">
-                        <label id="uniprotId">123</label>
+    <ul class="breadcrumb">
+        <li><a href="#">COMPROT Search</a></li>
+        <li><a href="#">Targets</a></li>
+        <li class="active">Details for Target</li>
+    </ul>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>Target name</legend>
+                    <div class="form-group">
+                        <label for="uniprotId" class="col-lg-2 control-label">UniProt ID:</label>
+                        <div class="col-lg-10">
+                            <label id="uniprotId">123</label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="synonyms" class="col-lg-2 control-label">Synonyms:</label>
-                    <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="synonyms"></textarea>
-                        <span class="help-block">All the synonyms.</span>
+                    <div class="form-group">
+                        <label for="synonyms" class="col-lg-2 control-label">Synonyms:</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="synonyms"></textarea>
+                            <span class="help-block">All the synonyms.</span>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="drugs" class="col-lg-2 control-label">Compounds:</label>
-                    <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="drugs"></textarea>
-                        <span class="help-block">All the compounds.</span>
+                    <div class="form-group">
+                        <label for="drugs" class="col-lg-2 control-label">Compounds:</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="drugs"></textarea>
+                            <span class="help-block">All the compounds.</span>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button class="btn btn-default">Back</button>
-                        <button type="submit" class="btn btn-primary">Add to Workbench</button>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button class="btn btn-default">Back</button>
+                            <button type="submit" class="btn btn-primary">Add to Workbench</button>
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
+                </fieldset>
+            </form>
+        </div>
     </div>
+
 </div>
