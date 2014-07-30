@@ -38,22 +38,12 @@ angular.module('app', [
         'Accept': 'application/vnd.comprot-v1.0+json'
     });
 
-    /*RestangularProvider.setRestangularFields({
-        id: "self.links['']"
-    });*/
-
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
 }])
 
 .controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'toaster', 'security',
-		function($scope, $location, breadcrumbs, httpRequestTracker, toaster, security) {
-
-    // FIXME delete
-    $scope.model = {
-        compounds: 0,
-        targets: 0,
-        diseases: 0
-    };
+		function($scope, $location, breadcrumbs, httpRequestTracker) {
+    $scope.breadcrumbs = breadcrumbs;
 
 	$scope.isActiveView = function (path) {
 		return path === breadcrumbs.getFirst().name;

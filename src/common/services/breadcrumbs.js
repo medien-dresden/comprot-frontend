@@ -10,6 +10,10 @@ angular.module('services.breadcrumbs', [])
     $rootScope.$on('$routeChangeSuccess', function(event, current) {
         var pathElements = $location.path().split('/'), result = [], i;
 
+        var ucfirst = function (string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        };
+
         var breadcrumbPath = function (index) {
             return '/' + (pathElements.slice(0, index + 1)).join('/');
         };
@@ -17,7 +21,7 @@ angular.module('services.breadcrumbs', [])
         pathElements.shift();
 
         for (i = 0; i < pathElements.length; i++) {
-            result.push({name: pathElements[i], path: breadcrumbPath(i)});
+            result.push({name: ucfirst(pathElements[i]), path: breadcrumbPath(i)});
         }
 
         breadcrumbs = result;
