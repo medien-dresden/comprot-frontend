@@ -5,20 +5,21 @@ angular.module('services.storage', ['restangular'])
 	    var extractedData,
             links = {},
             setupLinks = function(data) {
-            angular.forEach(data.links, function(link) {
-                if (angular.isUndefined(link.rel) || angular.isUndefined(link.href)) {
-                    return;
-                }
+                angular.forEach(data.links, function(link) {
+                    if (angular.isUndefined(link.rel) || angular.isUndefined(link.href)) {
+                        return;
+                    }
 
-                if (link.rel === 'self') {
-                    data.href = link.href;
-                } else {
-                    links[link.rel] = link.href;
-                }
-            });
+                    if (link.rel === 'self') {
+                        data.href = link.href;
+                    } else {
+                        links[link.rel] = link.href;
+                    }
+                });
 
-            data.links = links;
-        };
+                data.id = data.href.split('/').pop();
+                data.links = links;
+            };
 
         if (operation === 'getList' && !angular.isUndefined(data.page)) {
             angular.forEach(data.content, function(item) {
