@@ -1,4 +1,4 @@
 angular.module('app.search', [
-    'app.search.box',
-    'app.search.results'
+    'app.search.results',
+    'app.search.box'
 ]);

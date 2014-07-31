@@ -7,8 +7,8 @@ angular.module('app.search.results', ['services.storage'])
     });
 }])
 
-.controller('ResultsCtrl', ['$scope', '$location', '$routeParams', 'entityService',
-        function ($scope, $location, $routeParams, entityService) {
+.controller('ResultsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', 'entityService',
+        function ($rootScope, $scope, $location, $routeParams, entityService) {
     $scope.result = [];
 
     $scope.showCompounds = true;
@@ -17,6 +17,10 @@ angular.module('app.search.results', ['services.storage'])
     $scope.totalPages = 0;
     $scope.totalElements = 0;
     $scope.currentPage = 0;
+
+    if (!angular.isUndefined($routeParams.query) && $routeParams.query.length > 0) {
+        $rootScope.$broadcast('queryChanged', { query: $routeParams.query });
+    }
 
     $scope.showDetails = function(item) {
         $location.path((item.type === 'TARGET' ? 'targets/' : 'compounds/') + item.id);
