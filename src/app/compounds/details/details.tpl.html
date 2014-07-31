@@ -5,42 +5,42 @@
                 <fieldset>
                     <legend>{{name}}</legend>
                     <div class="form-group">
-                        <label for="type" class="col-lg-2 control-label">Type:</label>
+                        <label for="type" class="col-lg-2 control-label">Type</label>
                         <div class="col-lg-10">
                             <label id="type">{{type}}</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sourceId" class="col-lg-2 control-label">Source-ID:</label>
+                        <div class="col-md-2 text-right">Source ID</div>
                         <div class="col-lg-10">
                             <label id="sourceId">{{sourceId}}</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="synonyms" class="col-lg-2 control-label">Synonyms:</label>
+                        <div class="col-md-2 text-right">Synonyms</div>
                         <div class="col-lg-10">
-                            <!--textarea class="form-control" rows="3" id="synonyms"></textarea>
-                            <span class="help-block">All the synonyms.</span-->
                             <ul><li id="synonyms" ng-repeat="synonym in synonyms">{{ synonym }}</li></ul>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="targets" class="col-lg-2 control-label">Targets:</label>
+                        <div class="col-md-2 text-right">Binding targets</div>
                         <div class="col-lg-10">
-                            <!--textarea class="form-control" rows="3" id="proteins"></textarea>
-                            <span class="help-block">All the targets.</span-->
                             <ul><li id="targets" ng-repeat="target in targets">{{ target }}</li></ul>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            <button class="btn btn-default">Back</button>
-                            <button type="submit" class="btn btn-primary">Add to Workbench</button>
                         </div>
                     </div>
                 </fieldset>
             </form>
         </div>
     </div>
-
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                    <form class="navbar-form form-inline no-padding">
+                        <button type="button" class="btn btn-primary navbar-btn">to Workbench</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>

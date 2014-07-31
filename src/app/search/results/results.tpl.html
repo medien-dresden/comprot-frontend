@@ -56,7 +56,12 @@
                     <td ng-bind-html="item.type | toEntityIcon"></td>
                     <td>{{ item.name }}</td>
                     <td>
-                        <ul><li ng-repeat="synonym in item.synonyms">{{ synonym }}</li></ul>
+                        <ul>
+                            <li ng-repeat="synonym in item.synonyms | slice:0:4">{{synonym}}</li>
+                        </ul>
+                        <ul class="ng-hide">
+                            <li ng-repeat="synonym in item.synonyms | slice:5:item.synonyms.length">{{synonym}}</li>
+                        </ul>
                     </td>
                     <td>
                         <button class="btn btn-default" ng-click="showDetails(item)">Details</button>
@@ -66,17 +71,30 @@
             </table>
         </div>
     </div>
-    <div class="row clearfix">
-        <div class="col-md-12 column text-right">
-            <pagination total-items="totalElements"
-                        page="currentPage"
-                        on-select-page="pageSelected(page)"
-                        max-size="10"
-                        class="pagination-md"
-                        rotate="false"
-                        num-pages="totalPages"
-                        boundary-links="true"></pagination>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                    <form class="navbar-form form-inline no-padding">
+                        <button type="button" class="btn btn-primary navbar-btn">to Workbench</button>
+                    </form>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form form-inline no-padding">
+                        <pagination total-items="totalElements"
+                                    page="currentPage"
+                                    on-select-page="pageSelected(page)"
+                                    max-size="10"
+                                    class="pagination-md pagination-navbar"
+                                    rotate="false"
+                                    num-pages="totalPages"
+                                    boundary-links="true"></pagination>
+                    </form>
+                </li>
+            </ul>
         </div>
-    </div>
+    </nav>
 </div>
 

@@ -28,6 +28,7 @@ angular.module('app.search.results', ['services.storage'])
     };
     
     $scope.pageSelected = function(page) {
+        $scope.currentPage = page;
         $scope.search($routeParams.query, page - 1);
     };
 

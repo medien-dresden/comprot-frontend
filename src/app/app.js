@@ -53,11 +53,21 @@ angular.module('app', [
     $scope.hasPendingRequests = function () {
         return httpRequestTracker.hasPendingRequests();
     };
-    
+
+    $scope.$back = function() {
+        window.history.back();
+    };
+
 }])
 
 .filter('toEntityIcon', ['$sce', function($sce) {
     return function(entityType) {
         return $sce.trustAsHtml('<span class="entity-icon entity-icon-' + entityType.toLowerCase() + '"></span>');
     };
-}]);
+}])
+
+.filter('slice', function() {
+    return function(arr, start, end) {
+        return (arr || []).slice(start, end);
+    };
+});
