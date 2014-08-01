@@ -52,7 +52,9 @@ angular.module('services.storage', ['restangular'])
     });
 
     RestangularProvider.addElementTransformer('workbenches', false, function(workbench) {
-        if (!angular.isObject(workbench)) return;
+        if (!angular.isObject(workbench)) {
+            return;
+        }
 
         angular.forEach(workbench.targets, setupLinks);
         angular.forEach(workbench.compounds, setupLinks);
@@ -61,7 +63,9 @@ angular.module('services.storage', ['restangular'])
     });
 
     RestangularProvider.addElementTransformer('bindings', false, function(binding) {
-        if (!angular.isObject(binding)) return;
+        if (!angular.isObject(binding)) {
+            return;
+        }
 
         setupLinks(binding.target);
         setupLinks(binding.compound);
