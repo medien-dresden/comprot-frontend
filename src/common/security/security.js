@@ -7,8 +7,8 @@ angular.module('security.service', [
     'base64'
 ])
 
-.factory('security', ['$http', '$q', '$location', 'securityRetryQueue', '$modal', 'userService', 'securityInterceptor',
-    function($http, $q, $location, queue, $modal, userService, securityInterceptor) {
+.factory('security', ['$rootScope', '$http', '$q', '$location', 'securityRetryQueue', '$modal', 'userService', 'securityInterceptor',
+    function($rootScope, $http, $q, $location, queue, $modal, userService, securityInterceptor) {
 
     // Login form dialog stuff
     var loginDialog = null;
@@ -73,6 +73,7 @@ angular.module('security.service', [
 
                 if (service.isAuthenticated()) {
                     closeLoginDialog(true);
+                    $rootScope.$broadcast('user:loggedIn');
                 }
 
                 return service.isAuthenticated();
@@ -97,6 +98,7 @@ angular.module('security.service', [
         logout: function(redirectTo) {
             securityInterceptor.clearAuthorization();
             service.currentUser = null;
+            $rootScope.$broadcast('user:loggedOut');
         },
 
         // Ask the backend to see if a user is already authenticated - this may be from a previous session.

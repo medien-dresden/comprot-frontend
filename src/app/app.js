@@ -42,9 +42,10 @@ angular.module('app', [
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
 }])
 
-.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'toaster', 'security',
-		function($scope, $location, breadcrumbs, httpRequestTracker) {
+.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'security',
+		function($scope, $location, breadcrumbs, httpRequestTracker, security) {
     $scope.breadcrumbs = breadcrumbs;
+    $scope.workbench = null;
 
 	$scope.isActiveView = function (path) {
 		return path === breadcrumbs.getFirst().name;
@@ -57,6 +58,18 @@ angular.module('app', [
     $scope.$back = function() {
         window.history.back();
     };
+
+    $scope.$on('user:loggedIn', function(event) {
+        security.requestCurrentUser().then(function(user) {
+            user.workbenches().then(function(workbenches) {
+                $scope.workbench = workbenches[0];
+            });
+        });
+    });
+
+    $scope.$on('user:loggedOut', function(event) {
+        $scope.workbench = null;
+    });
 
 }])
 
