@@ -20,14 +20,13 @@ angular.module('services.storage', ['restangular'])
 	RestangularProvider.addResponseInterceptor(function(data, operation) {
         var extractedData;
 
-        if (operation === 'getList' && angular.isDefined(data.page)) {
+        if (angular.isObject(data.page)) {
             angular.forEach(data.content, setupLinks);
             extractedData = data.content;
             extractedData.page = data.page;
 
-        } else if (operation === 'getList' && angular.isUndefined(data.page)) {
+        } else if (operation === 'getList') {
             angular.forEach(data, setupLinks);
-
             extractedData = data;
 
         } else {
@@ -53,9 +52,21 @@ angular.module('services.storage', ['restangular'])
     });
 
     RestangularProvider.addElementTransformer('workbenches', false, function(workbench) {
+        if (!angular.isObject(binding)) return;
+
         angular.forEach(workbench.targets, setupLinks);
         angular.forEach(workbench.compounds, setupLinks);
+
         return workbench;
+    });
+
+    RestangularProvider.addElementTransformer('bindings', false, function(binding) {
+        if (!angular.isObject(binding)) return;
+
+        setupLinks(binding.target);
+        setupLinks(binding.compound);
+
+        return binding;
     });
 
 }])

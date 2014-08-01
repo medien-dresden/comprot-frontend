@@ -7,8 +7,8 @@ angular.module('app.compounds.details', [])
     });
 }])
 
-.controller('CompoundDetailsCtrl', ['$scope', '$routeParams', 'entityService',
-        function ($scope, $routeParams, entityService) {
+.controller('CompoundDetailsCtrl', ['$scope', '$routeParams', 'entityService', '$location',
+        function ($scope, $routeParams, entityService, $location) {
     $scope.id = $routeParams.id;
     $scope.name = "";
     $scope.type = "";
@@ -23,11 +23,11 @@ angular.module('app.compounds.details', [])
         $scope.synonyms = entity.synonyms;
     });
 
-    entityService.one($scope.id).one('bindings').get().then(function(binding) {
-        $scope.bindings = binding.content;
+    entityService.one($scope.id).getList('bindings').then(function(bindings) {
+        $scope.bindings = bindings;
     });
 
-    $scope.showDetails = function(bindingtarget) {
-        $location.path('targets/' + bindingtarget.target.id);
+    $scope.showDetails = function(binding) {
+        $location.path('targets/' + binding.target.id);
     };
 }]);
