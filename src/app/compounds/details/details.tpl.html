@@ -5,15 +5,15 @@
                 <fieldset>
                     <legend>{{name}}</legend>
                     <div class="form-group">
-                        <label for="type" class="col-lg-2 control-label">Type</label>
+                        <div class="col-md-2 text-right">Type</div>
                         <div class="col-lg-10">
-                            <label id="type">{{type}}</label>
+                            <div id="type">{{type}}</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-2 text-right">Source ID</div>
                         <div class="col-lg-10">
-                            <label id="sourceId">{{sourceId}}</label>
+                            <div id="sourceId">{{sourceId}}</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -24,8 +24,25 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-2 text-right">Binding targets</div>
-                        <div class="col-lg-10">
-                            <ul><li id="targets" ng-repeat="target in targets">{{ target }}</li></ul>
+                        <div class="col-md-10 column">
+                            <table class="table table-hover" id="target">
+                                <colgroup>
+                                    <col width="70%">
+                                    <col width="30%">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Interaction Type</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="bindingtarget in targets">
+                                    <td>{{ bindingtarget.target.name }}</td>
+                                    <td>{{ bindingtarget.interaction }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </fieldset>

@@ -5,25 +5,25 @@
                 <fieldset>
                     <legend>{{name}}</legend>
                     <div class="form-group">
-                        <label for="type" class="col-lg-2 control-label">Type:</label>
+                        <div class="col-md-2 text-right">Type:</div>
                         <div class="col-lg-10">
-                            <label id="type">{{type}}</label>
+                            <div id="type">{{type}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sourceId" class="col-lg-2 control-label">Source-ID:</label>
+                        <div class="col-md-2 text-right">Source-ID:</div>
                         <div class="col-lg-10">
-                            <label id="sourceId">{{sourceId}}</label>
+                            <div id="sourceId">{{sourceId}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="taxonomyId" class="col-lg-2 control-label">Taxonomy-ID:</label>
+                        <div class="col-md-2 text-right">Taxonomy-ID:</div>
                         <div class="col-lg-10">
-                            <label id="taxonomyId">{{taxonomyId}}</label>
+                            <div id="taxonomyId">{{taxonomyId}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="synonyms" class="col-lg-2 control-label">Synonyms:</label>
+                        <div class="col-md-2 text-right">Synonyms:</div>
                         <div class="col-lg-10">
                             <!--textarea class="form-control" rows="3" id="synonyms"></textarea>
                             <span class="help-block">All the synonyms.</span-->
@@ -31,11 +31,26 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="compound" class="col-lg-2 control-label">Compounds:</label>
-                        <div class="col-lg-10">
-                            <!--textarea class="form-control" rows="3" id="drugs"></textarea>
-                            <span class="help-block">All the compounds.</span-->
-                            <ul><li id="compound" ng-repeat="compound in compounds">{{ compound }}</li></ul>
+                        <div class="col-md-2 text-right">Binding compounds:</div>
+                        <div class="col-md-10 column">
+                            <table class="table table-hover" id="compound">
+                                <colgroup>
+                                    <col width="70%">
+                                    <col width="30%">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Interaction Type</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="bindingcompound in compounds">
+                                    <td>{{ bindingcompound.compound.name }}</td>
+                                    <td>{{ bindingcompound.interaction }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </fieldset>
