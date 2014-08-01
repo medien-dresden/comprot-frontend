@@ -14,7 +14,7 @@ angular.module('app.compounds.details', [])
     $scope.type = "";
     $scope.sourceId = "";
     $scope.synonyms = [];
-    $scope.targets = [];
+    $scope.bindings = [];
 
     entityService.one($scope.id).get().then(function(entity) {
         $scope.name = entity.name;
@@ -24,6 +24,10 @@ angular.module('app.compounds.details', [])
     });
 
     entityService.one($scope.id).one('bindings').get().then(function(binding) {
-        $scope.targets = binding.content;
+        $scope.bindings = binding.content;
     });
+
+    $scope.showDetails = function(bindingtarget) {
+        $location.path('targets/' + bindingtarget.target.id);
+    };
 }]);

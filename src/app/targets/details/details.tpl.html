@@ -1,60 +1,80 @@
 <div ng-controller="TargetDetailsCtrl">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <form class="form-horizontal">
-                <fieldset>
-                    <legend>{{name}}</legend>
+    <div class="page-header"><h2>{{name}}</h2></div>
+    <div class="row clearfix">
+        <div class="col-md-6 column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Details
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="col-md-5 text-left">Type</div>
+                                <div class="col-lg-7">
+                                    <div id="type">{{type}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5 text-left">Source ID</div>
+                                <div class="col-lg-7">
+                                    <div id="sourceId">{{sourceId}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5 text-left">Taxonomy ID</div>
+                                <div class="col-lg-7">
+                                    <div id="taxonomyId">{{taxonomyId}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5 text-left">Synonyms</div>
+                                <div class="col-lg-7">
+                                    <ul><li id="synonyms" ng-repeat="synonym in synonyms">{{ synonym }}</li></ul>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Bindings
+                    </h3>
+                </div>
+                <div class="panel-body">
                     <div class="form-group">
-                        <div class="col-md-2 text-right">Type:</div>
-                        <div class="col-lg-10">
-                            <div id="type">{{type}}</div>
-                        </div>
+                        <table class="table table-hover" id="target">
+                            <colgroup>
+                                <col width="65%">
+                                <col width="25%">
+                                <col width="10%">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Interaction Type</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="bindingcompound in bindings">
+                                <td>{{ bindingcompound.compound.name }}</td>
+                                <td>{{ bindingcompound.interaction }}</td>
+                                <td>
+                                    <button class="btn btn-default btn-sm" ng-click="showDetails(bindingcompound)">Details</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-2 text-right">Source-ID:</div>
-                        <div class="col-lg-10">
-                            <div id="sourceId">{{sourceId}}</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 text-right">Taxonomy-ID:</div>
-                        <div class="col-lg-10">
-                            <div id="taxonomyId">{{taxonomyId}}</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 text-right">Synonyms:</div>
-                        <div class="col-lg-10">
-                            <!--textarea class="form-control" rows="3" id="synonyms"></textarea>
-                            <span class="help-block">All the synonyms.</span-->
-                        <ul><li id="synonyms" ng-repeat="synonym in synonyms">{{ synonym }}</li></ul>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 text-right">Binding compounds:</div>
-                        <div class="col-md-10 column">
-                            <table class="table table-hover" id="compound">
-                                <colgroup>
-                                    <col width="70%">
-                                    <col width="30%">
-                                </colgroup>
-                                <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Interaction Type</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="bindingcompound in compounds">
-                                    <td>{{ bindingcompound.compound.name }}</td>
-                                    <td>{{ bindingcompound.interaction }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
+                </div>
+            </div>
         </div>
     </div>
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
@@ -62,7 +82,13 @@
             <ul class="nav navbar-nav">
                 <li>
                     <form class="navbar-form form-inline no-padding">
-                        <button type="button" class="btn btn-primary navbar-btn">to Workbench</button>
+                        <button type="button" class="btn btn-primary navbar-btn"
+                                popover-placement="right"
+                                popover="add target to workbench"
+                                popover-trigger="mouseenter"
+                                popover-append-to-body="true">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
                     </form>
                 </li>
             </ul>

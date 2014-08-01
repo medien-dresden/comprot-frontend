@@ -15,7 +15,7 @@ angular.module('app.targets.details', [])
     $scope.sourceId = "";
     $scope.taxonomyId = "";
     $scope.synonyms = [];
-    $scope.compounds = [];
+    $scope.bindings = [];
 
     entityService.one($scope.id).get().then(function(entity) {
         $scope.name = entity.name;
@@ -26,6 +26,10 @@ angular.module('app.targets.details', [])
     });
 
     entityService.one($scope.id).one('bindings').get().then(function(binding) {
-        $scope.compounds = binding.content;
+        $scope.bindings = binding.content;
     });
+
+    $scope.showDetails = function(bindingcompound) {
+        $location.path('compounds/' + bindingcompound.compound.id);
+    };
 }]);
