@@ -52,7 +52,7 @@ angular.module('services.storage', ['restangular'])
     });
 
     RestangularProvider.addElementTransformer('workbenches', false, function(workbench) {
-        if (!angular.isObject(binding)) return;
+        if (!angular.isObject(workbench)) return;
 
         angular.forEach(workbench.targets, setupLinks);
         angular.forEach(workbench.compounds, setupLinks);
