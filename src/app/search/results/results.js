@@ -46,4 +46,5 @@ angular.module('app.search.results', ['services.storage'])
 
     $scope.search($routeParams.query, 0);
 
+
 }]);
