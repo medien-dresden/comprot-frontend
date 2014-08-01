@@ -13,7 +13,9 @@ angular.module('app.search.results', ['services.storage'])
 
     $scope.showCompounds = true;
     $scope.showTargets = true;
-    
+
+    $scope.selectedAll = false;
+
     $scope.totalPages = 0;
     $scope.totalElements = 0;
     $scope.currentPage = 0;
@@ -38,6 +40,9 @@ angular.module('app.search.results', ['services.storage'])
 
     $scope.search = function(query, page) {
         entityService.getList({q: query, page: page}).then(function(list) {
+            angular.forEach(list, function (entity) {
+                entity.checked = false;
+            });
             $scope.result = list;
             $scope.totalPages = list.page.totalPages;
             $scope.totalElements = list.page.totalElements;
@@ -46,5 +51,15 @@ angular.module('app.search.results', ['services.storage'])
 
     $scope.search($routeParams.query, 0);
 
+    $scope.selectAll = function() {
+        if ($scope.selectedAll) {
+            $scope.selectedAll = true;
+        } else {
+            $scope.selectedAll = false;
+        }
+        angular.forEach($scope.result, function (entity) {
+            entity.selected = $scope.selectedAll;
+        });
 
+    };
 }]);

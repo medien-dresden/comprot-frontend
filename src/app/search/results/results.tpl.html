@@ -43,7 +43,7 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th><input type="checkbox" id="checkall" /></th>
+                    <th><input type="checkbox" ng-model="selectedAll" ng-change="selectAll()"></th>
                     <th></th>
                     <th>Name</th>
                     <th>Synonyms</th>
@@ -52,7 +52,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in result | filter:showTypes">
-                    <td><input type="checkbox" class="checkthis" /></td>
+                    <td><input type="checkbox" ng-model="item.selected" /></td>
                     <td ng-bind-html="item.type | toEntityIcon"></td>
                     <td>{{ item.name }}</td>
                     <td>
