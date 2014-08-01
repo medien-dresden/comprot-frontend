@@ -52,7 +52,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in result | filter:showTypes">
-                    <td><input type="checkbox" class="checkthis" /></td>
+                    <td><input type="checkbox" class="checkthis" ng-click="cbThis()"/></td>
                     <td ng-bind-html="item.type | toEntityIcon"></td>
                     <td>{{ item.name }}</td>
                     <td>

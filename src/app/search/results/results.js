@@ -46,4 +46,7 @@ angular.module('app.search.results', ['services.storage'])
 
     $scope.search($routeParams.query, 0);
 
+
+    $scope.cbThis = function() {};
+
 }]);
