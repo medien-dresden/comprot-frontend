@@ -49,6 +49,10 @@ angular.module('app.search.results', ['services.storage'])
     $scope.allEntitiesSelected = function() {
         var allEntitiesSelected = true;
 
+        if ($scope.result.length < 1) {
+            return false;
+        }
+
         angular.forEach($scope.result, function(entity) {
             allEntitiesSelected &= entity.isSelected;
         });
@@ -61,6 +65,18 @@ angular.module('app.search.results', ['services.storage'])
         angular.forEach($scope.result, function(entity) {
             entity.isSelected = isSelected;
         });
+    };
+
+    $scope.selectedEntities = function() {
+        var selectedEntities = [];
+
+        angular.forEach($scope.result, function(entity) {
+            if (entity.isSelected) {
+                selectedEntities.push(entity);
+            }
+        });
+
+        return selectedEntities;
     };
 
     if (!angular.isUndefined($routeParams.query) && $routeParams.query.length > 0) {

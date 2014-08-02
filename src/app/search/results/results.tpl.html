@@ -43,7 +43,7 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th ng-class="{info:allEntitiesSelected()}">
+                    <th>
                         <input type="checkbox" ng-click="selectAllChanged()" ng-checked="allEntitiesSelected()">
                     </th>
                     <th></th>
@@ -54,7 +54,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in result | filter:showTypes">
-                    <td ng-class="{info:item.isSelected}"><input type="checkbox" ng-model="item.isSelected" /></td>
+                    <td><input type="checkbox" ng-model="item.isSelected" /></td>
                     <td ng-bind-html="item.type | toEntityIcon" ng-click="item.isSelected = !item.isSelected"></td>
                     <td ng-click="item.isSelected = !item.isSelected">{{ item.name }}</td>
                     <td>
@@ -82,7 +82,8 @@
                                 popover-placement="right"
                                 popover="add selected entities to workbench"
                                 popover-trigger="mouseenter"
-                                popover-append-to-body="true">
+                                popover-append-to-body="true"
+                                ng-disabled="selectedEntities().length < 1">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </form>
