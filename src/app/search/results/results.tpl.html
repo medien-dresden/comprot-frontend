@@ -43,7 +43,9 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th><input type="checkbox" ng-model="selectedAll" ng-change="selectAll()"></th>
+                    <th ng-class="{info:allEntitiesSelected()}">
+                        <input type="checkbox" ng-click="selectAllChanged()" ng-checked="allEntitiesSelected()">
+                    </th>
                     <th></th>
                     <th>Name</th>
                     <th>Synonyms</th>
@@ -52,9 +54,9 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in result | filter:showTypes">
-                    <td><input type="checkbox" ng-model="item.selected" /></td>
-                    <td ng-bind-html="item.type | toEntityIcon"></td>
-                    <td>{{ item.name }}</td>
+                    <td ng-class="{info:item.isSelected}"><input type="checkbox" ng-model="item.isSelected" /></td>
+                    <td ng-bind-html="item.type | toEntityIcon" ng-click="item.isSelected = !item.isSelected"></td>
+                    <td ng-click="item.isSelected = !item.isSelected">{{ item.name }}</td>
                     <td>
                         <ul>
                             <li ng-repeat="synonym in item.synonyms | slice:0:4">{{synonym}}</li>

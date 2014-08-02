@@ -20,10 +20,6 @@ angular.module('app.search.results', ['services.storage'])
     $scope.totalElements = 0;
     $scope.currentPage = 0;
 
-    if (!angular.isUndefined($routeParams.query) && $routeParams.query.length > 0) {
-        $rootScope.$broadcast('queryChanged', { query: $routeParams.query });
-    }
-
     $scope.showDetails = function(item) {
         $location.path((item.type === 'TARGET' ? 'targets/' : 'compounds/') + item.id);
     };
@@ -41,25 +37,36 @@ angular.module('app.search.results', ['services.storage'])
     $scope.search = function(query, page) {
         entityService.getList({q: query, page: page}).then(function(list) {
             angular.forEach(list, function (entity) {
-                entity.checked = false;
+                entity.isSelected = false;
             });
+
             $scope.result = list;
             $scope.totalPages = list.page.totalPages;
             $scope.totalElements = list.page.totalElements;
         });
     };
 
-    $scope.search($routeParams.query, 0);
+    $scope.allEntitiesSelected = function() {
+        var allEntitiesSelected = true;
 
-    $scope.selectAll = function() {
-        if ($scope.selectedAll) {
-            $scope.selectedAll = true;
-        } else {
-            $scope.selectedAll = false;
-        }
-        angular.forEach($scope.result, function (entity) {
-            entity.selected = $scope.selectedAll;
+        angular.forEach($scope.result, function(entity) {
+            allEntitiesSelected &= entity.isSelected;
         });
 
+        return allEntitiesSelected;
     };
+
+    $scope.selectAllChanged = function() {
+        var isSelected = !$scope.allEntitiesSelected();
+        angular.forEach($scope.result, function(entity) {
+            entity.isSelected = isSelected;
+        });
+    };
+
+    if (!angular.isUndefined($routeParams.query) && $routeParams.query.length > 0) {
+        $rootScope.$broadcast('queryChanged', { query: $routeParams.query });
+    }
+
+    $scope.search($routeParams.query, 0);
+
 }]);
