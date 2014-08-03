@@ -37,15 +37,6 @@ angular.module('services.storage', ['restangular'])
 	    return extractedData;
     });
 
-    RestangularProvider.addFullRequestInterceptor(function(headers) {
-        if (!angular.isObject(headers)) {
-            return;
-        }
-
-        // FIXME gets deleted somehow
-        headers['Content-Type'] = 'application/vnd.comprot-v1.0+json';
-    });
-
     RestangularProvider.addElementTransformer('users', false, function(user) {
         user.addRestangularMethod('workbenches', 'getList', 'workbenches');
         return user;

@@ -1,4 +1,4 @@
-angular.module('app.search.results', ['services.storage'])
+angular.module('app.search.results', ['services.storage', 'services.workbench'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/search/:query', {
@@ -7,8 +7,8 @@ angular.module('app.search.results', ['services.storage'])
     });
 }])
 
-.controller('ResultsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', 'entityService',
-        function ($rootScope, $scope, $location, $routeParams, entityService) {
+.controller('ResultsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', 'entityService', 'workbenchService',
+        function ($rootScope, $scope, $location, $routeParams, entityService, workbenchService) {
     $scope.result = [];
 
     $scope.showCompounds = true;
@@ -77,6 +77,10 @@ angular.module('app.search.results', ['services.storage'])
         });
 
         return selectedEntities;
+    };
+
+    $scope.addSelectionToWorkbench = function() {
+        workbenchService.add($scope.selectedEntities());
     };
 
     if (!angular.isUndefined($routeParams.query) && $routeParams.query.length > 0) {

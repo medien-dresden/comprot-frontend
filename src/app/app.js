@@ -14,11 +14,12 @@ angular.module('app', [
 	'services.breadcrumbs',
     'services.httpRequestTracker',
 	'services.storage',
+    'services.workbench',
 
     'app.search',
     'app.dashboard',
     'app.compounds',
-    'app.targets',
+    'app.targets'
 ])
 
 //TODO: move those messages to a separate module
@@ -42,34 +43,22 @@ angular.module('app', [
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
 }])
 
-.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'security',
-		function($scope, $location, breadcrumbs, httpRequestTracker, security) {
+.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'workbenchService',
+		function($scope, $location, breadcrumbs, httpRequestTracker, workbenchService) {
     $scope.breadcrumbs = breadcrumbs;
-    $scope.workbench = null;
+    $scope.workbenchService = workbenchService;
 
 	$scope.isActiveView = function (path) {
 		return path === breadcrumbs.getFirst().name;
 	};
 
-    $scope.hasPendingRequests = function () {
+    $scope.$hasPendingRequests = function () {
         return httpRequestTracker.hasPendingRequests();
     };
 
     $scope.$back = function() {
         window.history.back();
     };
-
-    $scope.$on('user:loggedIn', function(event) {
-        security.requestCurrentUser().then(function(user) {
-            user.workbenches().then(function(workbenches) {
-                $scope.workbench = workbenches[0];
-            });
-        });
-    });
-
-    $scope.$on('user:loggedOut', function(event) {
-        $scope.workbench = null;
-    });
 
 }])
 

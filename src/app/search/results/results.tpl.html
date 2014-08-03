@@ -83,7 +83,8 @@
                                 popover="add selected entities to workbench"
                                 popover-trigger="mouseenter"
                                 popover-append-to-body="true"
-                                ng-disabled="selectedEntities().length < 1">
+                                ng-click="addSelectionToWorkbench()"
+                                ng-disabled="selectedEntities().length < 1 || $hasPendingRequests()">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </form>

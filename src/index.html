@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="static/application.css"/>
 	</head>
 	<body ng-controller="AppCtrl">
-		<toaster-container toaster-options="{'position-class': 'toast-bottom-right'}"></toaster-container>
+		<toaster-container toaster-options="{'position-class': 'toast-top-right'}"></toaster-container>
 		<div class="navbar navbar-inverse navbar-fixed-top" ng-init="hasCollapsedNavigation = true">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -30,11 +30,11 @@
 					<ul class="nav navbar-nav">
 						<li ng-class="{active:isActiveView('compounds')}">
 							<a href="#/compounds" data-toggle="tab">
-                                Compounds&nbsp;&nbsp;<span class="badge" ng-bind="workbench.compounds.length || 0">0</span></a>
+                                Compounds&nbsp;&nbsp;<span class="badge" ng-bind="workbenchService.countCompounds()">0</span></a>
 						</li>
 						<li ng-class="{active:isActiveView('targets')}">
 							<a href="#/targets" data-toggle="tab">
-                                Targets&nbsp;&nbsp;<span class="badge" ng-bind="workbench.targets.length || 0">0</span></a>
+                                Targets&nbsp;&nbsp;<span class="badge" ng-bind="workbenchService.countTargets()">0</span></a>
 						</li>
 						<li class="divider-vertical"></li>
 						<li class="dropdown">
@@ -48,7 +48,7 @@
                         <login-toolbar></login-toolbar>
                     </ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li ng-show="hasPendingRequests()" class="navbar-indicator">
+						<li ng-show="$hasPendingRequests()" class="navbar-indicator">
 							<p class="navbar-text"><img src="static/img/spinner.gif"></p>
 						</li>
 					</ul>
