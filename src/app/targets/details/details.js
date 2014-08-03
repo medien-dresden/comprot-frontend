@@ -10,6 +10,7 @@ angular.module('app.targets.details', [])
 .controller('TargetDetailsCtrl', ['$scope', '$routeParams', 'entityService', '$location',
         function ($scope, $routeParams, entityService, $location) {
     $scope.id = $routeParams.id;
+    $scope.entity = null;
     $scope.name = "";
     $scope.type = "";
     $scope.sourceId = "";
@@ -28,6 +29,10 @@ angular.module('app.targets.details', [])
     entityService.one($scope.id).getList('bindings').then(function(bindings) {
         $scope.bindings = bindings;
     });
+
+    $scope.addToWorkbench = function() {
+        workbenchService.add($scope.entity);
+    };
 
     $scope.showDetails = function(binding) {
         $location.path('compounds/' + binding.compound.id);
