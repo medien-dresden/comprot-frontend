@@ -51,21 +51,21 @@
                     <div class="form-group">
                         <table class="table table-hover" id="target">
                             <colgroup>
-                                <col width="65%">
                                 <col width="25%">
+                                <col width="65%">
                                 <col width="10%">
                             </colgroup>
                             <thead>
                             <tr>
-                                <th>Name</th>
                                 <th>Interaction Type</th>
+                                <th>Compound</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="bindingcompound in bindings">
-                                <td>{{ bindingcompound.compound.name }}</td>
                                 <td>{{ bindingcompound.interaction }}</td>
+                                <td>{{ bindingcompound.compound.name }}</td>
                                 <td>
                                     <button class="btn btn-default btn-sm" ng-click="showDetails(bindingcompound)">Details</button>
                                 </td>

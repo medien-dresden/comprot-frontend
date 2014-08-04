@@ -28,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in result">
+                <tr ng-repeat="item in workbenchitems">
                     <td><input type="checkbox" class="checkthis" /></td>
                     <td ng-bind-html="item.type | toEntityIcon"></td>
                     <td>{{ item.name }}</td>
@@ -53,7 +53,7 @@
             <ul class="nav navbar-nav">
                 <li>
                     <form class="navbar-form form-inline no-padding">
-                        <button type="submit" class="btn btn-primary navbar-btn">Find Targets for all selected Compounds</button>
+                        <button type="submit" class="btn btn-primary navbar-btn" ng-click="getCompounds()">Find Targets for all selected Compounds</button>
                     </form>
                 </li>
                 <li>

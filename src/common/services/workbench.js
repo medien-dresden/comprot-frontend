@@ -45,6 +45,14 @@ angular.module('services.workbench', ['security', 'toaster'])
                 return (workbench !== null) ? workbench.compounds.length : 0;
             };
 
+            service.getTargets = function() {
+                return (workbench !== null) ? workbench.targets : null;
+            };
+
+            service.getCompounds = function() {
+                return (workbench !== null) ? workbench.compounds : null;
+            };
+
             service.add = function(item) {
                 _.isArray(item) ? add(item) : add([ item ]);
             };
