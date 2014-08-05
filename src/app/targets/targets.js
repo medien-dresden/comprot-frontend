@@ -23,8 +23,20 @@ angular.module('app.targets', ['app.targets.details'])
             entity.isSelected = false;
         });
         $scope.workbenchitems = list;
-        $scope.totalPages = list.page.totalPages;
-        $scope.totalElements = list.page.totalElements;
+    };
+
+    $scope.removeSelectionFromWorkbench = function() {
+        var removeList = $scope.selectedEntities();
+
+        angular.forEach(removeList, function (entity) {
+            entity.isRemoved = true;
+        });
+
+        workbenchService.remove(removeList);
+    };
+
+    $scope.removedItems = function(item){
+        return (!item.isRemoved);
     };
 
     $scope.showDetails = function(item) {

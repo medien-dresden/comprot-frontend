@@ -21,10 +21,23 @@ angular.module('app.compounds', ['app.compounds.details'])
        var list = workbenchService.getCompounds();
        angular.forEach(list, function (entity) {
            entity.isSelected = false;
+           entity.isRemoved = false;
        });
        $scope.workbenchitems = list;
-        $scope.totalPages = list.page.totalPages;
-        $scope.totalElements = list.page.totalElements;
+    };
+
+    $scope.removeSelectionFromWorkbench = function() {
+        var removeList = $scope.selectedEntities();
+
+        angular.forEach(removeList, function (entity) {
+            entity.isRemoved = true;
+        });
+
+        workbenchService.remove(removeList);
+    };
+
+    $scope.removedItems = function(item){
+        return (!item.isRemoved);
     };
 
     $scope.showDetails = function(item) {

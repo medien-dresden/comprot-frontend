@@ -30,7 +30,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in workbenchitems">
+                <tr ng-repeat="item in workbenchitems | filter:removedItems">
                     <td>
                         <input type="checkbox" ng-model="item.isSelected" />
                     </td>
@@ -57,12 +57,20 @@
             <ul class="nav navbar-nav">
                 <li>
                     <form class="navbar-form form-inline no-padding">
-                        <button type="submit" class="btn btn-primary navbar-btn">Find Targets for all selected Compounds</button>
+                        <button type="submit"
+                                class="btn btn-primary navbar-btn"
+                                ng-disabled="selectedEntities().length < 1">
+                            Find Targets for all selected Compounds
+                        </button>
                     </form>
                 </li>
                 <li>
                     <form class="navbar-form form-inline">
-                        <button class="btn btn-default navbar-btn">Delete from Workbench</button>
+                        <button class="btn btn-default navbar-btn"
+                                ng-click="removeSelectionFromWorkbench()"
+                                ng-disabled="selectedEntities().length < 1">
+                            Delete from Workbench
+                        </button>
                     </form>
                 </li>
             </ul>

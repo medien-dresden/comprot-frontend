@@ -22,6 +22,25 @@ angular.module('services.workbench', ['security', 'toaster'])
                     return (workbench !== null) ? $q.when(workbench) : requestWorkbench();
                 },
 
+                remove = function(items) {
+                    require().then(function(wb) {
+                        var compounds = wb.compounds,
+                            targets   = wb.targets;
+
+                        angular.forEach(items, function(item) {
+                            compounds = _.without(compounds, item);
+                        });
+                        angular.forEach(items, function(item) {
+                            targets = _.without(targets, item);
+                        });
+
+                        wb.compounds = _.unique(compounds, 'id');
+                        wb.targets   = _.unique(targets, 'id');
+
+                        wb.save().then(showSaveSuccess);
+                    });
+                },
+
                 add = function(items) {
                     require().then(function(wb) {
                         var compounds = _.union(wb.compounds, _.where(items, { type: 'COMPOUND' })),
@@ -55,6 +74,10 @@ angular.module('services.workbench', ['security', 'toaster'])
 
             service.add = function(item) {
                 _.isArray(item) ? add(item) : add([ item ]);
+            };
+
+            service.remove = function(item) {
+                _.isArray(item) ? remove(item) : remove([ item ]);
             };
 
             return service;
