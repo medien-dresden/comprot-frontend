@@ -54,7 +54,9 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in result | filter:showTypes">
-                    <td><input type="checkbox" ng-model="item.isSelected" /></td>
+                    <td>
+                        <input type="checkbox" ng-model="item.isSelected" />
+                    </td>
                     <td ng-bind-html="item.type | toEntityIcon" ng-click="item.isSelected = !item.isSelected"></td>
                     <td ng-click="item.isSelected = !item.isSelected">{{ item.name }}</td>
                     <td>

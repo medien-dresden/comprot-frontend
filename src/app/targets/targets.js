@@ -17,6 +17,16 @@ angular.module('app.targets', ['app.targets.details'])
     $scope.totalElements = 0;
     $scope.currentPage = 0;
 
+    $scope.initWorkbench = function() {
+        var list = workbenchService.getTargets();
+        angular.forEach(list, function (entity) {
+            entity.isSelected = false;
+        });
+        $scope.workbenchitems = list;
+        $scope.totalPages = list.page.totalPages;
+        $scope.totalElements = list.page.totalElements;
+    };
+
     $scope.showDetails = function(item) {
         $location.path((item.type === 'TARGET' ? 'targets/' : 'compounds/') + item.id);
     };

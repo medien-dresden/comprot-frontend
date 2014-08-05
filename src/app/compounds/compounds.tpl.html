@@ -1,4 +1,4 @@
-<div ng-controller="CompoundsCtrl">
+<div ng-controller="CompoundsCtrl" data-ng-init="initWorkbench()">
     <div class="row clearfix">
         <div class="col-md-2 column">
             <div class="panel panel-default">
@@ -20,7 +20,9 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th><input type="checkbox" id="checkall" /></th>
+                    <th>
+                        <input type="checkbox" ng-click="selectAllChanged()" ng-checked="allEntitiesSelected()">
+                    </th>
                     <th></th>
                     <th>Name</th>
                     <th>Synonyms</th>
@@ -29,7 +31,9 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in workbenchitems">
-                    <td><input type="checkbox" class="checkthis" /></td>
+                    <td>
+                        <input type="checkbox" ng-model="item.isSelected" />
+                    </td>
                     <td ng-bind-html="item.type | toEntityIcon"></td>
                     <td>{{ item.name }}</td>
                     <td>
@@ -53,7 +57,7 @@
             <ul class="nav navbar-nav">
                 <li>
                     <form class="navbar-form form-inline no-padding">
-                        <button type="submit" class="btn btn-primary navbar-btn" ng-click="getCompounds()">Find Targets for all selected Compounds</button>
+                        <button type="submit" class="btn btn-primary navbar-btn">Find Targets for all selected Compounds</button>
                     </form>
                 </li>
                 <li>

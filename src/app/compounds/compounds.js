@@ -17,12 +17,14 @@ angular.module('app.compounds', ['app.compounds.details'])
     $scope.totalElements = 0;
     $scope.currentPage = 0;
 
-    $scope.getCompounds = function() {
+    $scope.initWorkbench = function() {
        var list = workbenchService.getCompounds();
        angular.forEach(list, function (entity) {
            entity.isSelected = false;
        });
        $scope.workbenchitems = list;
+        $scope.totalPages = list.page.totalPages;
+        $scope.totalElements = list.page.totalElements;
     };
 
     $scope.showDetails = function(item) {
