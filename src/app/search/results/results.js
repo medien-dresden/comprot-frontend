@@ -5,6 +5,11 @@ angular.module('app.search.results', ['services.storage', 'services.workbench'])
         templateUrl: 'search/results/results.tpl.html',
         controller: 'ResultsCtrl'
     });
+
+    $routeProvider.when('/search/bindings', {
+        templateUrl: 'search/results/results.tpl.html',
+        controller: 'ResultsCtrl'
+    });
 }])
 
 .controller('ResultsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', 'entityService', 'workbenchService',
@@ -28,7 +33,7 @@ angular.module('app.search.results', ['services.storage', 'services.workbench'])
         return (item.type === 'COMPOUND' && $scope.showCompounds) ||
             (item.type === 'TARGET' && $scope.showTargets);
     };
-    
+
     $scope.pageSelected = function(page) {
         $scope.currentPage = page;
         $scope.search($routeParams.query, page - 1);

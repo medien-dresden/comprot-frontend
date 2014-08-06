@@ -9,71 +9,60 @@ angular.module('app.targets', ['app.targets.details'])
 
 .controller('TargetsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', 'entityService', 'workbenchService',
         function ($rootScope, $scope, $location, $routeParams, entityService, workbenchService) {
-    $scope.workbenchitems = [];
+            $scope.entities = [];
 
-    $scope.selectedAll = false;
+            var fetchCompounds = function() {
+                workbenchService.requestWorkbench().then(function (workbench) {
+                    $scope.entities = workbench.targets;
+                    _($scope.entities).each(function(entity) {
+                        entity.isSelected = false;
+                    });
+                });
+            };
 
-    $scope.totalPages = 0;
-    $scope.totalElements = 0;
-    $scope.currentPage = 0;
+            $rootScope.$on('user:loggedOut', $scope.$back);
 
-    $scope.initWorkbench = function() {
-        var list = workbenchService.getTargets();
-        angular.forEach(list, function (entity) {
-            entity.isSelected = false;
-        });
-        $scope.workbenchitems = list;
-    };
+            $scope.removeSelectionFromWorkbench = function() {
+                workbenchService.remove($scope.selectedEntities()).then(fetchCompounds);
+            };
 
-    $scope.removeSelectionFromWorkbench = function() {
-        var removeList = $scope.selectedEntities();
+            $scope.showDetails = function(item) {
+                $location.path((item.type === 'COMPOUND' ? 'compounds/' : 'targets/') + item.id);
+            };
 
-        angular.forEach(removeList, function (entity) {
-            entity.isRemoved = true;
-        });
+            $scope.allEntitiesSelected = function() {
+                var allEntitiesSelected = true;
 
-        workbenchService.remove(removeList);
-    };
+                if ($scope.entities.length < 1) {
+                    return false;
+                }
 
-    $scope.removedItems = function(item){
-        return (!item.isRemoved);
-    };
+                angular.forEach($scope.entities, function(entity) {
+                    allEntitiesSelected &= entity.isSelected;
+                });
 
-    $scope.showDetails = function(item) {
-        $location.path((item.type === 'TARGET' ? 'targets/' : 'compounds/') + item.id);
-    };
+                return allEntitiesSelected;
+            };
 
-    $scope.allEntitiesSelected = function() {
-        var allEntitiesSelected = true;
+            $scope.selectAllChanged = function() {
+                var isSelected = !$scope.allEntitiesSelected();
+                angular.forEach($scope.entities, function(entity) {
+                    entity.isSelected = isSelected;
+                });
+            };
 
-        if ($scope.workbenchitems.length < 1) {
-            return false;
-        }
+            $scope.selectedEntities = function() {
+                var selectedEntities = [];
 
-        angular.forEach($scope.workbenchitems, function(entity) {
-            allEntitiesSelected &= entity.isSelected;
-        });
+                angular.forEach($scope.entities, function(entity) {
+                    if (entity.isSelected) {
+                        selectedEntities.push(entity);
+                    }
+                });
 
-        return allEntitiesSelected;
-    };
+                return selectedEntities;
+            };
 
-    $scope.selectAllChanged = function() {
-        var isSelected = !$scope.allEntitiesSelected();
-        angular.forEach($scope.workbenchitems, function(entity) {
-            entity.isSelected = isSelected;
-        });
-    };
+            fetchCompounds();
 
-    $scope.selectedEntities = function() {
-        var selectedEntities = [];
-
-        angular.forEach($scope.workbenchitems, function(entity) {
-            if (entity.isSelected) {
-                selectedEntities.push(entity);
-            }
-        });
-
-        return selectedEntities;
-    };
-
-}]);
+        }]);

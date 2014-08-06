@@ -1,13 +1,13 @@
-<div ng-controller="TargetsCtrl" data-ng-init="initWorkbench()">
+<div ng-controller="TargetsCtrl">
     <div class="row clearfix">
         <div class="col-md-2 column">
-            <div class="panel panel-default">
+            <!--div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         Filters
                     </h3>
                 </div>
-            </div>
+            </div-->
         </div>
         <div class="col-md-10 column">
             <table class="table table-hover" id="results-table">
@@ -30,12 +30,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in workbenchitems | filter:removedItems">
+                <tr ng-repeat="item in entities">
                     <td>
                         <input type="checkbox" ng-model="item.isSelected" />
                     </td>
-                    <td ng-bind-html="item.type | toEntityIcon"></td>
-                    <td>{{ item.name }}</td>
+                    <td ng-bind-html="item.type | toEntityIcon" ng-click="item.isSelected = !item.isSelected"></td>
+                    <td ng-click="item.isSelected = !item.isSelected">{{ item.name }}</td>
                     <td>
                         <ul>
                             <li ng-repeat="synonym in item.synonyms | slice:0:4">{{synonym}}</li>
@@ -59,8 +59,8 @@
                     <form class="navbar-form form-inline no-padding">
                         <button type="submit"
                                 class="btn btn-primary navbar-btn"
-                                ng-disabled="selectedEntities().length < 1">
-                            Find Compounds for all selected Targets
+                                ng-disabled="selectedEntities().length < 1 || $hasPendingRequests()">
+                            Bindings
                         </button>
                     </form>
                 </li>
@@ -68,23 +68,9 @@
                     <form class="navbar-form form-inline">
                         <button class="btn btn-default navbar-btn"
                                 ng-click="removeSelectionFromWorkbench()"
-                                ng-disabled="selectedEntities().length < 1">
-                            Delete from Workbench
+                                ng-disabled="selectedEntities().length < 1 || $hasPendingRequests()">
+                            Delete
                         </button>
-                    </form>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <form class="navbar-form form-inline no-padding">
-                        <pagination total-items="totalElements"
-                                    page="currentPage"
-                                    on-select-page="pageSelected(page)"
-                                    max-size="10"
-                                    class="pagination-md pagination-navbar"
-                                    rotate="false"
-                                    num-pages="totalPages"
-                                    boundary-links="true"></pagination>
                     </form>
                 </li>
             </ul>
