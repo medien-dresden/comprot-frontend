@@ -9,35 +9,21 @@ angular.module('app.compounds', ['app.compounds.details'])
 
 .controller('CompoundsCtrl', ['$rootScope', '$scope', '$location', '$routeParams', 'entityService', 'workbenchService',
         function ($rootScope, $scope, $location, $routeParams, entityService, workbenchService) {
-    $scope.workbenchitems = [];
+    $scope.entities = [];
 
-    $scope.selectedAll = false;
-
-    $scope.totalPages = 0;
-    $scope.totalElements = 0;
-    $scope.currentPage = 0;
-
-    $scope.initWorkbench = function() {
-       var list = workbenchService.getCompounds();
-       angular.forEach(list, function (entity) {
-           entity.isSelected = false;
-           entity.isRemoved = false;
-       });
-       $scope.workbenchitems = list;
+    var fetchCompounds = function() {
+        workbenchService.requestWorkbench().then(function (workbench) {
+            $scope.entities = workbench.compounds;
+            _($scope.entities).each(function(entity) {
+                entity.isSelected = false;
+            });
+        });
     };
+
+    $rootScope.$on('user:loggedOut', $scope.$back);
 
     $scope.removeSelectionFromWorkbench = function() {
-        var removeList = $scope.selectedEntities();
-
-        angular.forEach(removeList, function (entity) {
-            entity.isRemoved = true;
-        });
-
-        workbenchService.remove(removeList);
-    };
-
-    $scope.removedItems = function(item){
-        return (!item.isRemoved);
+        workbenchService.remove($scope.selectedEntities()).then(fetchCompounds);
     };
 
     $scope.showDetails = function(item) {
@@ -47,11 +33,11 @@ angular.module('app.compounds', ['app.compounds.details'])
     $scope.allEntitiesSelected = function() {
         var allEntitiesSelected = true;
 
-        if ($scope.workbenchitems.length < 1) {
+        if ($scope.entities.length < 1) {
             return false;
         }
 
-        angular.forEach($scope.workbenchitems, function(entity) {
+        angular.forEach($scope.entities, function(entity) {
             allEntitiesSelected &= entity.isSelected;
         });
 
@@ -60,7 +46,7 @@ angular.module('app.compounds', ['app.compounds.details'])
 
     $scope.selectAllChanged = function() {
         var isSelected = !$scope.allEntitiesSelected();
-        angular.forEach($scope.workbenchitems, function(entity) {
+        angular.forEach($scope.entities, function(entity) {
             entity.isSelected = isSelected;
         });
     };
@@ -68,7 +54,7 @@ angular.module('app.compounds', ['app.compounds.details'])
     $scope.selectedEntities = function() {
         var selectedEntities = [];
 
-        angular.forEach($scope.workbenchitems, function(entity) {
+        angular.forEach($scope.entities, function(entity) {
             if (entity.isSelected) {
                 selectedEntities.push(entity);
             }
@@ -76,5 +62,7 @@ angular.module('app.compounds', ['app.compounds.details'])
 
         return selectedEntities;
     };
+
+    fetchCompounds();
 
 }]);

@@ -1,4 +1,4 @@
-<div ng-controller="CompoundsCtrl" data-ng-init="initWorkbench()">
+<div ng-controller="CompoundsCtrl">
     <div class="row clearfix">
         <div class="col-md-2 column">
             <div class="panel panel-default">
@@ -30,12 +30,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in workbenchitems | filter:removedItems">
+                <tr ng-repeat="item in entities">
                     <td>
                         <input type="checkbox" ng-model="item.isSelected" />
                     </td>
-                    <td ng-bind-html="item.type | toEntityIcon"></td>
-                    <td>{{ item.name }}</td>
+                    <td ng-bind-html="item.type | toEntityIcon" ng-click="item.isSelected = !item.isSelected"></td>
+                    <td ng-click="item.isSelected = !item.isSelected">{{ item.name }}</td>
                     <td>
                         <ul>
                             <li ng-repeat="synonym in item.synonyms | slice:0:4">{{synonym}}</li>
@@ -59,8 +59,8 @@
                     <form class="navbar-form form-inline no-padding">
                         <button type="submit"
                                 class="btn btn-primary navbar-btn"
-                                ng-disabled="selectedEntities().length < 1">
-                            Find Targets for all selected Compounds
+                                ng-disabled="selectedEntities().length < 1 || $hasPendingRequests()">
+                            Bindings
                         </button>
                     </form>
                 </li>
@@ -68,8 +68,8 @@
                     <form class="navbar-form form-inline">
                         <button class="btn btn-default navbar-btn"
                                 ng-click="removeSelectionFromWorkbench()"
-                                ng-disabled="selectedEntities().length < 1">
-                            Delete from Workbench
+                                ng-disabled="selectedEntities().length < 1 || $hasPendingRequests()">
+                            Delete
                         </button>
                     </form>
                 </li>

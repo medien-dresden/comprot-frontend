@@ -92,13 +92,13 @@ angular.module('security.service', [
         // Give up trying to login and clear the retry queue
         cancelLogin: function() {
             closeLoginDialog(false);
+            $rootScope.$broadcast('user:loggedOut');
         },
 
         // Logout the current user and redirect
-        logout: function(redirectTo) {
+        logout: function() {
             securityInterceptor.clearAuthorization();
             service.currentUser = null;
-            $rootScope.$broadcast('user:loggedOut');
         },
 
         // Ask the backend to see if a user is already authenticated - this may be from a previous session.

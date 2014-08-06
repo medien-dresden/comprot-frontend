@@ -23,6 +23,8 @@ angular.module('services.workbench', ['security', 'toaster'])
                 },
 
                 remove = function(items) {
+                    var deferred = $q.defer();
+
                     require().then(function(wb) {
                         var compounds = wb.compounds,
                             targets   = wb.targets;
@@ -37,11 +39,17 @@ angular.module('services.workbench', ['security', 'toaster'])
                         wb.compounds = _.unique(compounds, 'id');
                         wb.targets   = _.unique(targets, 'id');
 
-                        wb.save().then(showSaveSuccess);
+                        wb.save().then(showSaveSuccess).then(function() {
+                            deferred.resolve(wb);
+                        });
                     });
+
+                    return deferred.promise;
                 },
 
                 add = function(items) {
+                    var deferred = $q.defer();
+
                     require().then(function(wb) {
                         var compounds = _.union(wb.compounds, _.where(items, { type: 'COMPOUND' })),
                             targets   = _.union(wb.targets,   _.where(items, { type: 'TARGET'   }));
@@ -49,8 +57,15 @@ angular.module('services.workbench', ['security', 'toaster'])
                         wb.compounds = _.unique(compounds, 'id');
                         wb.targets   = _.unique(targets, 'id');
 
-                        wb.save().then(showSaveSuccess);
+                        wb.save().then(showSaveSuccess).then(function() {
+                            deferred.resolve(wb);
+                        });
+
+                    }, function() {
+                        deferred.reject();
                     });
+
+                    return deferred.promise;
                 };
 
             $rootScope.$on('user:loggedIn',  function () { requestWorkbench(); });
@@ -64,20 +79,16 @@ angular.module('services.workbench', ['security', 'toaster'])
                 return (workbench !== null) ? workbench.compounds.length : 0;
             };
 
-            service.getTargets = function() {
-                return (workbench !== null) ? workbench.targets : null;
-            };
-
-            service.getCompounds = function() {
-                return (workbench !== null) ? workbench.compounds : null;
+            service.requestWorkbench = function() {
+                return require();
             };
 
             service.add = function(item) {
-                _.isArray(item) ? add(item) : add([ item ]);
+                return _.isArray(item) ? add(item) : add([ item ]);
             };
 
             service.remove = function(item) {
-                _.isArray(item) ? remove(item) : remove([ item ]);
+                return _.isArray(item) ? remove(item) : remove([ item ]);
             };
 
             return service;

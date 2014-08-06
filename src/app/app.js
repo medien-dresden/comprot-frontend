@@ -43,10 +43,11 @@ angular.module('app', [
     $routeProvider.otherwise({ redirectTo: '/dashboard' });
 }])
 
-.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'workbenchService',
-		function($scope, $location, breadcrumbs, httpRequestTracker, workbenchService) {
+.controller('AppCtrl', ['$scope', '$location', 'breadcrumbs', 'httpRequestTracker', 'workbenchService', 'security',
+		function($scope, $location, breadcrumbs, httpRequestTracker, workbenchService, security) {
     $scope.breadcrumbs = breadcrumbs;
     $scope.workbenchService = workbenchService;
+    $scope.security = security;
 
 	$scope.isActiveView = function (path) {
 		return path === breadcrumbs.getFirst().name;

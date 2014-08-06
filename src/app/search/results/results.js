@@ -75,12 +75,15 @@ angular.module('app.search.results', ['services.storage', 'services.workbench'])
                 selectedEntities.push(entity);
             }
         });
-
         return selectedEntities;
     };
 
     $scope.addSelectionToWorkbench = function() {
-        workbenchService.add($scope.selectedEntities());
+        workbenchService.add($scope.selectedEntities()).then(function() {
+            _($scope.result).each(function(entity) {
+                entity.isSelected = false;
+            });
+        });
     };
 
     if (!angular.isUndefined($routeParams.query) && $routeParams.query.length > 0) {

@@ -28,11 +28,11 @@
 						<div ng-include="'search/box/box.tpl.html'"></div>
 					</form>
 					<ul class="nav navbar-nav">
-						<li ng-class="{active:isActiveView('compounds')}">
+						<li ng-class="{active:isActiveView('compounds')}" ng-show="security.isAuthenticated()">
 							<a href="#/compounds" data-toggle="tab">
                                 Compounds&nbsp;&nbsp;<span class="badge" ng-bind="workbenchService.countCompounds()">0</span></a>
 						</li>
-						<li ng-class="{active:isActiveView('targets')}">
+						<li ng-class="{active:isActiveView('targets')}" ng-show="security.isAuthenticated()">
 							<a href="#/targets" data-toggle="tab">
                                 Targets&nbsp;&nbsp;<span class="badge" ng-bind="workbenchService.countTargets()">0</span></a>
 						</li>
