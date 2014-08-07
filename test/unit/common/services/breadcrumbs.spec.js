@@ -36,11 +36,11 @@ describe('breadcrumbs', function () {
         $rootScope.$broadcast('$routeChangeSuccess', {});
 
         expect(breadcrumbs.getAll()).toEqual([
-            { name:'some', path:'/some' },
-            { name:'path', path:'/some/path' }
+            { name:'Some', path:'#/some' },
+            { name:'Path', path:'#/some/path' }
         ]);
         
-        expect(breadcrumbs.getFirst()).toEqual({name:'some', path:'/some'});
+        expect(breadcrumbs.getFirst()).toEqual({name:'Some', path:'#/some'});
     });
 
 });
